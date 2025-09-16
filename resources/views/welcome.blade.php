@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">
+         <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
        <title>Andalas Wheels</title>
 
         <!-- Fonts -->
@@ -19,6 +20,40 @@
             </style>
         @endif
     </head>
-    <body>
-    </body>
+    <body class="relative min-h-screen w-full overflow-hidden">
+    <!-- Video Background -->
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+        <source src="{{ asset('video/andalaswheels.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <!-- Overlay agar teks jelas -->
+    <div class="absolute inset-0 bg-black/80 z-10"></div>
+    <!-- Konten Get Started -->
+    <div class="relative z-20 flex flex-col items-center justify-center min-h-screen">
+        <img src="{{ asset('img/andalaswheels.png') }}"
+             alt="Logo"
+             class="w-32 h-32 mb-6 drop-shadow-lg"
+             data-aos="zoom-in"
+             data-aos-duration="1000"
+             data-aos-delay="600" />
+        <div class="flex flex-col items-center justify-center gap-6"
+        data-aos="fade-up"
+                data-aos-duration="1200"
+                data-aos-delay="800">
+            <div
+                class="px-8 py-4 rounded-full border bg-transparent text-white text-xl font-bold font-[Carena]  transition-all duration-300 hover:scale-110 hover:bg-blue-700 cursor-pointer"
+               
+                onclick="window.location.href='{{ route('login') }}'">
+                Explore
+            </div>
+        </div>
+    </div>
+   
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        AOS.init();
+      });
+    </script>
+</body>
 </html>
