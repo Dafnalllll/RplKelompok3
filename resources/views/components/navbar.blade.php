@@ -1,19 +1,20 @@
 <!-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\navbar.blade.php -->
-<nav class="w-full bg-white flex items-center justify-between px-12 py-4 shadow">
+<nav class="w-full bg-transparent flex items-center justify-between px-12 py-4 shadow">
     <!-- Logo & Brand -->
     <div class="flex items-center gap-4">
-        <img src="{{ asset('img/scooter-logo.png') }}" alt="Logo" class="w-14 h-14 rounded-full border-2 border-[#21408E]" />
-        <span class="text-2xl font-bold text-[#21408E] font-[Montserrat]">Andalaswheels</span>
+        <img src="{{ asset('img/andalaswheels.png') }}" alt="Logo" class="w-14 h-14  border-[#21408E]" />
+        <span class="text-2xl font-bold text-[#21408E] font-[Montserrat]">Andalas Wheels</span>
     </div>
     <!-- Menu -->
-    <div class="flex items-center gap-12">
-        <a href="{{ url('/') }}" class="text-xl font-medium text-black relative group">
+    <div class="flex items-center gap-12 text-white">
+        <a href="{{ url('/') }}" class="text-xl font-medium  relative group">
             Home
             <span class="block h-1 w-8 bg-[#21408E] absolute left-1/2 -translate-x-1/2 bottom-[-8px] group-hover:w-10 transition-all duration-300"></span>
         </a>
-        <a href="{{ url('/services') }}" class="text-xl font-medium text-black">Services</a>
-        <a href="{{ url('/blog') }}" class="text-xl font-medium text-black">Blog</a>
-        <a href="{{ url('/contact') }}" class="text-xl font-medium text-black">Contact Us</a>
+        <a href="{{ url('/about') }}" class="text-xl font-medium ">About Us</a>
+        <a href="{{ url('/blog') }}" class="text-xl font-medium ">Blog</a>
+        <a href="{{ url('/contact') }}" class="text-xl font-medium ">Contact Us</a>
+        <a href="{{ url('/ourteam') }}" class="text-xl font-medium ">Our Team</a>
     </div>
     <!-- Login / Logout -->
     <div class="flex items-center gap-2">
