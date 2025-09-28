@@ -1,5 +1,5 @@
 <!-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\navbar.blade.php -->
-<nav class="w-full bg-transparent flex items-center justify-between px-12 py-4 shadow">
+<nav class="w-full bg-gray-900 flex items-center justify-between px-12 py-4 shadow">
     <!-- Logo & Brand -->
     <div class="flex items-center gap-4">
         <img src="{{ asset('img/andalaswheels.png') }}" alt="Logo" class="w-14 h-14  border-[#21408E]" />
