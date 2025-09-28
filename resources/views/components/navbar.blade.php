@@ -6,15 +6,25 @@
         <span class="text-2xl font-bold text-[#21408E] font-[Montserrat]">Andalas Wheels</span>
     </div>
     <!-- Menu -->
-    <div class="flex items-center gap-12 text-white">
-        <a href="{{ url('/') }}" class="text-xl font-medium  relative group">
+    <div class="flex items-center gap-12 text-white relative">
+        <!-- Moving underline -->
+        <span id="movingUnderline" class="absolute h-1 bg-[#21408E] bottom-[-8px] transition-all duration-300 ease-out"></span>
+
+        <a href="{{ url('/dashboard') }}" class="text-xl font-medium relative nav-link {{ Request::is('/') ? 'active' : '' }}" data-menu="home">
             Home
-            <span class="block h-1 w-8 bg-[#21408E] absolute left-1/2 -translate-x-1/2 bottom-[-8px] group-hover:w-10 transition-all duration-300"></span>
         </a>
-        <a href="{{ url('/about') }}" class="text-xl font-medium ">About Us</a>
-        <a href="{{ url('/blog') }}" class="text-xl font-medium ">Blog</a>
-        <a href="{{ url('/contact') }}" class="text-xl font-medium ">Contact Us</a>
-        <a href="{{ url('/ourteam') }}" class="text-xl font-medium ">Our Team</a>
+        <a href="{{ url('/about') }}" class="text-xl font-medium relative nav-link {{ Request::is('about') ? 'active' : '' }}" data-menu="about">
+            About Us
+        </a>
+        <a href="{{ url('/blog') }}" class="text-xl font-medium relative nav-link {{ Request::is('blog') ? 'active' : '' }}" data-menu="blog">
+            Blog
+        </a>
+        <a href="{{ url('/contact') }}" class="text-xl font-medium relative nav-link {{ Request::is('contact') ? 'active' : '' }}" data-menu="contact">
+            Contact Us
+        </a>
+        <a href="{{ url('/ourteam') }}" class="text-xl font-medium relative nav-link {{ Request::is('ourteam') ? 'active' : '' }}" data-menu="ourteam">
+            Our Team
+        </a>
     </div>
     <!-- Login / Logout -->
     <div class="flex items-center gap-2">
@@ -35,3 +45,52 @@
         @endauth
     </div>
 </nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const movingUnderline = document.getElementById('movingUnderline');
+
+    function updateUnderline(activeLink) {
+        const linkRect = activeLink.getBoundingClientRect();
+        const navRect = activeLink.closest('.flex').getBoundingClientRect();
+
+        const leftPosition = linkRect.left - navRect.left;
+        const width = linkRect.width;
+
+        movingUnderline.style.left = leftPosition + 'px';
+        movingUnderline.style.width = width + 'px';
+    }
+
+    // Set initial position
+    const activeLink = document.querySelector('.nav-link.active');
+    if (activeLink) {
+        updateUnderline(activeLink);
+    }
+
+    // Add click listeners
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Remove active class from all links
+            navLinks.forEach(l => l.classList.remove('active'));
+            // Add active class to clicked link
+            this.classList.add('active');
+            // Update underline position
+            updateUnderline(this);
+        });
+
+        // Hover effect
+        link.addEventListener('mouseenter', function() {
+            updateUnderline(this);
+        });
+    });
+
+    // Return to active link when mouse leaves nav
+    document.querySelector('.flex.items-center.gap-12').addEventListener('mouseleave', function() {
+        const activeLink = document.querySelector('.nav-link.active');
+        if (activeLink) {
+            updateUnderline(activeLink);
+        }
+    });
+});
+</script>

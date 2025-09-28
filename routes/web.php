@@ -12,11 +12,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/about', function () {
-    return view('pages.about');
+    return view('pages.user.about');
 })->middleware(['auth', 'verified'])->name('about');
 
 Route::get('/ourteam', function () {
-    return view('pages.ourteam');
+    return view('pages.user.ourteam');
 })->middleware(['auth', 'verified'])->name('ourteam');
 
 
