@@ -11,45 +11,94 @@
     @include('components.navbar')
 
     {{-- Hero Section --}}
-    <section class="min-h-screen bg-gradient-to-br from-gray-600 to-gray-800 flex items-center relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section class="min-h-screen bg-gray-900 relative overflow-hidden">
+        {{-- Background Image --}}
+        <div class="absolute inset-0 ">
+            <img src="{{ asset('img/motor.png') }}"
+                 alt="Andalas Wheels Motorcycle Background"
+                 class="w-full h-full ">
+            <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
+        </div>
 
-            {{-- Text Content --}}
-            <div class="space-y-8" data-aos="fade-right" data-aos-duration="1000">
-                <h1 class="text-4xl lg:text-6xl font-extrabold text-white leading-tight">
-                    Solusi Transportasi Hemat
-                    <span class="block">& Mudah Untuk Mahasiswa</span>
-                </h1>
+        {{-- Content --}}
+        <div class="relative z-10 flex items-center min-h-screen">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-                <p class="text-xl text-gray-300 leading-relaxed max-w-lg">
-                    Nikmati layanan rental motor cepat, aman, dan terjangkau khusus mahasiswa
-                </p>
+                {{-- Text Content --}}
+                <div class="space-y-8 mb-10" data-aos="fade-right" data-aos-duration="1000">
+                    <h1 class="text-4xl lg:text-6xl font-extrabold text-white leading-tight">
+                        Solusi Transportasi Hemat
+                        <span class="block">& Mudah Untuk Mahasiswa</span>
+                    </h1>
 
-                <div>
-                    <button class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
-                        Order
-                    </button>
+                    <p class="text-xl text-gray-300 leading-relaxed max-w-lg">
+                        Nikmati layanan rental motor cepat, aman, dan terjangkau khusus mahasiswa
+                    </p>
+
+                    <div>
+                        <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500">
+                            <button class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                                Order
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            {{-- Motorcycle Image --}}
-            <div class="relative" data-aos="fade-left" data-aos-duration="1000">
-                <div class="relative z-10">
-                    <img src="{{ asset('img/motor.png') }}"
-                         alt="Andalas Wheels Motorcycle"
-                         class="w-full h-auto rounded-2xl shadow-2xl">
+                {{-- Right Side - Empty or Additional Content --}}
+                <div class="relative" data-aos="fade-left" data-aos-duration="1000">
+                    {{-- Decorative elements --}}
+                    <div class="absolute -top-4 -right-4 w-72 h-72 bg-yellow-400 rounded-full opacity-20 blur-3xl"></div>
+                    <div class="absolute -bottom-4 -left-4 w-64 h-64 bg-blue-500 rounded-full opacity-20 blur-3xl"></div>
                 </div>
-
-                {{-- Decorative elements --}}
-                <div class="absolute -top-4 -right-4 w-72 h-72 bg-yellow-400 rounded-full opacity-20 blur-3xl"></div>
-                <div class="absolute -bottom-4 -left-4 w-64 h-64 bg-blue-500 rounded-full opacity-20 blur-3xl"></div>
             </div>
         </div>
 
         {{-- Background decorative elements --}}
-        <div class="absolute top-1/4 left-10 w-2 h-2 bg-yellow-400 rounded-full opacity-60"></div>
-        <div class="absolute top-1/3 right-20 w-3 h-3 bg-blue-400 rounded-full opacity-40"></div>
-        <div class="absolute bottom-1/4 left-1/4 w-1 h-1 bg-white rounded-full opacity-80"></div>
+        <div class="absolute top-1/4 left-10 w-2 h-2 bg-yellow-400 rounded-full opacity-60 z-20"></div>
+        <div class="absolute top-1/3 right-20 w-3 h-3 bg-blue-400 rounded-full opacity-40 z-20"></div>
+        <div class="absolute bottom-1/4 left-1/4 w-1 h-1 bg-white rounded-full opacity-80 z-20"></div>
+    </section>
+
+    {{-- Features Section --}}
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                {{-- Feature 1: Sewa hingga 30 Hari --}}
+                <div class="text-center space-y-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="flex justify-center">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-calendar-alt text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">Sewa hingga 30 Hari</h3>
+                    <p class="text-gray-600">Berkendara tanpa repot!</p>
+                </div>
+
+                {{-- Feature 2: Transaksi Aman --}}
+                <div class="text-center space-y-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="flex justify-center">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">Transaksi Aman</h3>
+                    <p class="text-gray-600">Pembayaran 100% cepat dan aman</p>
+                </div>
+
+                {{-- Feature 3: Dukungan 24/7 --}}
+                <div class="text-center space-y-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="flex justify-center">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-headset text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">Dukungan 24/7</h3>
+                    <p class="text-gray-600">Kebutuhan darurat? kami tersedia 24/7 untukmu</p>
+                </div>
+
+            </div>
+        </div>
     </section>
 
     @push('scripts')
@@ -57,7 +106,7 @@
         <script>
             AOS.init({
                 duration: 1000,
-                once: true,
+                once: false,
                 easing: 'ease-out-cubic'
             });
         </script>

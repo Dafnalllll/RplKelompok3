@@ -20,6 +20,31 @@ Route::get('/ourteam', function () {
 })->middleware(['auth', 'verified'])->name('ourteam');
 
 
+Route::get('/contact', function () {
+    return view('pages.user.contact');
+})->middleware(['auth', 'verified'])->name('contact');
+
+Route::get('/dashboardadmin', function () {
+    return view('pages.admin.dashboardadmin');
+})->name('dashboardadmin');
+
+Route::get('/ordermanage', function () {
+    return view('pages.admin.ordermanage');
+})->name('ordermanage');
+
+Route::get('/productmanage', function () {
+    return view('pages.admin.productmanage');
+})->name('productmanage');
+
+Route::get('/analytics', function () {
+    return view('pages.admin.analytics');
+})->name('analytics');
+
+Route::get('/categorymanage', function () {
+    return view('pages.admin.categorymanage');
+})->name('categorymanage');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
