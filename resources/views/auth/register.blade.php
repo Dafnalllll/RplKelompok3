@@ -49,11 +49,11 @@
                     <!-- Password -->
                     <div class="mb-10 relative" data-aos="fade-up" data-aos-duration="1300">
                         <x-input-label for="password" :value="__('Password')" class="mb-2 font-[Carena]" />
-                        <x-text-input id="password" 
-                            class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2 pr-12" 
-                            type="password" 
-                            name="password" 
-                            required 
+                        <x-text-input id="password"
+                            class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2 pr-12"
+                            type="password"
+                            name="password"
+                            required
                             autocomplete="new-password" />
                         <button type="button" onclick="togglePassword('password', 'eyePassword')" class="absolute right-4 top-9 group">
                             <span id="eyePassword" class="transition-colors duration-200 group-hover:text-blue-500">
@@ -70,11 +70,11 @@
                     <!-- Confirm Password -->
                     <div class="mb-10 relative" data-aos="fade-up" data-aos-duration="1400">
                         <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="mb-2 font-[Carena]" />
-                        <x-text-input id="password_confirmation" 
-                            class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2 pr-12" 
-                            type="password" 
-                            name="password_confirmation" 
-                            required 
+                        <x-text-input id="password_confirmation"
+                            class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2 pr-12"
+                            type="password"
+                            name="password_confirmation"
+                            required
                             autocomplete="new-password" />
                         <button type="button" onclick="togglePassword('password_confirmation', 'eyePasswordConfirmation')" class="absolute right-4 top-9 group">
                             <span id="eyePasswordConfirmation" class="transition-colors duration-200 group-hover:text-blue-500">
@@ -97,7 +97,7 @@
                     <div class="mt-6 text-center"
                         data-aos="fade-up"
                         data-aos-duration="1600">
-                        <span class="text-sm text-black font-[Poppins]">Sudah punya akun?</span>
+                        <span class="text-sm text-white font-[Poppins]">Sudah punya akun?</span>
                         <a href="{{ route('login') }}" class="text-sm text-blue-600 hover:underline font-semibold font-[Poppins]">Login disini</a>
                     </div>
                 </form>
@@ -109,7 +109,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         AOS.init();
     });
-    
+
     function togglePassword(inputId, eyeId) {
         const input = document.getElementById(inputId);
         const eyeSpan = document.getElementById(eyeId);

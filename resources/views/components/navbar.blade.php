@@ -16,8 +16,8 @@
         <a href="{{ url('/about') }}" class="text-xl font-medium relative nav-link {{ Request::is('about') ? 'active' : '' }}" data-menu="about">
             About Us
         </a>
-        <a href="{{ url('/blog') }}" class="text-xl font-medium relative nav-link {{ Request::is('blog') ? 'active' : '' }}" data-menu="blog">
-            Blog
+        <a href="{{ url('/faq') }}" class="text-xl font-medium relative nav-link {{ Request::is('faq') ? 'active' : '' }}" data-menu="faq">
+            FAQ
         </a>
         <a href="{{ url('/contact') }}" class="text-xl font-medium relative nav-link {{ Request::is('contact') ? 'active' : '' }}" data-menu="contact">
             Contact Us

@@ -47,8 +47,8 @@
                 $teamMembers = [
                     [
                         'name' => 'Rizki Dafa Naldi',
-                        'position' => 'Project Manager, Front-End Developer',
-                        'description' => 'Visionary leader with 10+ years experience in automotive industry. Passionate about innovation and customer satisfaction.',
+                        'position' => 'Project Manager',
+                        'description' => 'The project manager is responsible for overseeing the entire project. They make sure the team knows what to do, when to do it, and how to achieve the goals. They also act as the bridge between the technical team and the client or stakeholders.',
                         'image' => 'img/ourteam/dafa.png',
                         'instagram' => 'https://www.instagram.com/daf_nal/',
                         'linkedin' => 'https://www.linkedin.com/in/daffa-naldi-935b55341/',
@@ -58,7 +58,7 @@
                     [
                         'name' => 'Alpintan Safarah Putri',
                         'position' => 'Designer (UI/UX)',
-                        'description' => 'Tech enthusiast driving digital transformation. Expert in mobile apps and system optimization for seamless user experience.',
+                        'description' => 'The UI/UX designer creates the visual layout and plans the user experience. Their goal is not only to make the application look attractive but also to make it easy to understand, comfortable to use, and aligned with user needs.',
                         'image' => 'img/ourteam/pintan.png',
                         'instagram' => 'https://www.instagram.com/pintansafarah_/',
                         'linkedin' => 'https://www.linkedin.com/in/alpintan-safarah-putri-b40888287/',
@@ -68,7 +68,7 @@
                     [
                         'name' => 'Riyan Saputra',
                         'position' => 'Architect',
-                        'description' => 'Creative mind behind our beautiful interfaces. Passionate about user experience and creating designs that inspire and delight.',
+                        'description' => 'The system architect designs the overall structure of the system or application. They decide how different components connect with each other, which technologies to use, and ensure the system is secure, efficient, and scalable for the future.',
                         'image' => 'img/ourteam/riyan.png',
                         'instagram' => 'https://www.instagram.com/riiyansaputraa_/',
                         'linkedin' => 'https://linkedin.com/in/riyansaputra',
@@ -78,7 +78,7 @@
                     [
                         'name' => 'Zaviandra Chalil',
                         'position' => 'Back-End Developer',
-                        'description' => 'Creative mind behind our beautiful interfaces. Passionate about user experience and creating designs that inspire and delight.',
+                        'description' => 'The back-end developer works behind the scenes. They build the system’s logic, manage the database, and develop APIs so data can connect with the front-end.',
                         'image' => 'img/ourteam/zavi.png',
                         'instagram' => 'https://www.instagram.com/zavi_ac/',
                         'linkedin' => 'https://www.linkedin.com/in/zaviandra-chalil-0b2581287/',
@@ -88,7 +88,7 @@
                     [
                         'name' => 'Rahmi Rabbina Arrasyida',
                         'position' => 'Front-End Developer',
-                        'description' => 'Tech enthusiast driving digital transformation. Expert in mobile apps and system optimization for seamless user experience.',
+                        'description' => 'Front-End Developer is responsible for developing the visual and interactive parts of an application. They make sure the design works in code and connects well with the back-end. ',
                         'image' => 'img/ourteam/rahmi.png',
                         'instagram' => 'https://www.instagram.com/rahmirabbinaa/',
                         'linkedin' => 'https://www.linkedin.com/in/rahmi-rabbina-arrasyida-488161288/',

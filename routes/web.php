@@ -20,9 +20,9 @@ Route::get('/ourteam', function () {
 })->middleware(['auth', 'verified'])->name('ourteam');
 
 
-Route::get('/contact', function () {
-    return view('pages.user.contact');
-})->middleware(['auth', 'verified'])->name('contact');
+Route::get('/faq', function () {
+    return view('pages.user.faq');
+})->middleware(['auth', 'verified'])->name('faq');
 
 Route::get('/dashboardadmin', function () {
     return view('pages.admin.dashboardadmin');

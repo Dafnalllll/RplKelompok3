@@ -67,7 +67,7 @@
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         @if (Route::has('password.request'))
                             <div class="mt-2 text-right">
-                                <a class="text-sm text-black font-semibold font-[Poppins] hover:underline" href="{{ route('password.request') }}">
+                                <a class="text-sm text-white font-semibold font-[Poppins] hover:underline" href="{{ route('password.request') }}">
                                     Lupa Password ?
                                 </a>
                             </div>
@@ -79,12 +79,12 @@
                     data-aos="fade-up"
                     data-aos-duration="1400">
                         <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 cursor-pointer" name="remember">
-                        <label for="remember_me" class="ml-2 text-sm text-black font-semibold font-[Poppins]">Ingat saya</label>
+                        <label for="remember_me" class="ml-2 text-sm text-white font-semibold font-[Poppins]">Ingat saya</label>
                     </div>
 
                     <div data-aos="fade-up"
                     data-aos-duration="1500">
-                        <x-primary-button class="w-full rounded-full font-[] bg-black text-white py-2 text-lg font-semibold hover:bg-gray-800 transition-all hover:scale-105 justify-center">
+                        <x-primary-button class="block w-full rounded-full  bg-black text-white px-4 py-2 text-lg font-semibold hover:bg-gray-800 transition-all hover:scale-105 justify-center">
                             Login
                         </x-primary-button>
                     </div>
@@ -92,7 +92,7 @@
                 <div class="mt-10 text-center"
                 data-aos="fade-up"
                 data-aos-duration="1600">
-                    <span class="text-sm text-black font-[Poppins]">Tidak punya Akun ?</span>
+                    <span class="text-sm text-white font-[Poppins]">Tidak punya Akun ?</span>
                     <a href="{{ route('register') }}" class="text-sm text-blue-600 hover:underline font-semibold font-[Poppins]">Daftar disini</a>
                 </div>
             </div>
