@@ -25,7 +25,7 @@
              data-aos-duration="1200"
              data-aos-delay="400">
             <!-- Button dengan hover effect -->
-            <a href="{{ url('/') }}"
+            <a href="{{ url('/dashboard') }}"
                class="inline-block px-6 py-2 rounded-full bg-[#21408E] text-white font-semibold hover:bg-blue-700 hover:scale-105 transition-all duration-300">
                 Kembali ke Beranda
             </a>

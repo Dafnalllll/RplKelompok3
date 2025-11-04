@@ -1,5 +1,4 @@
-{{-- filepath: d:\Dafa Code\Rplkel3\resources\views\pages\user\about.blade.php --}}
-@section('title', 'Andalas Wheels || About Us')
+@section('title', 'Andalas Wheels || Contact Us')
 @push('head')
     <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
@@ -7,10 +6,11 @@
 @endpush
 <x-app-layout>
     @include('components.navbar')
+
     <section class="min-h-screen relative flex items-center bg-gray-900 overflow-hidden">
         {{-- Background Image --}}
         <div class="absolute inset-0 w-full h-full z-0">
-            <img src="{{ asset('img/about.webp') }}"
+            <img src="{{ asset('img/contact.webp') }}"
                  alt="Andalas Wheels Background"
                  class="w-full h-full object-cover object-center" />
             <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
@@ -24,24 +24,21 @@
             <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-8 mt-4 md:mt-0"
                 data-aos="fade-right"
                 data-aos-delay="200">
-                About Us
+                Contact Us
             </h1>
             <p class="text-xl text-gray-100 mb-10 leading-relaxed"
                data-aos="fade-right"
                data-aos-delay="400">
-                Andalas Wheels adalah solusi rental motor hemat dan mudah untuk mahasiswa. Mobilitas kampus jadi lebih praktis dan terjangkau!
+                Ingin booking motor, konsultasi layanan, atau ada kendala saat menggunakan Andalas Wheels? Silakan hubungi kami—tim kami siap membantu Anda secara langsung dan cepat!
             </p>
             {{-- Wrapper untuk AOS --}}
             <div data-aos="zoom-in" data-aos-delay="600">
                 <a class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg mt-2 transform hover:scale-105 cursor-pointer">
-                    Find More
+                    Get in Touch
                 </a>
             </div>
         </div>
     </section>
-
-    {{-- About Section Description --}}
-    @include('components.aboutsection.desc')
 
     {{-- Footer --}}
     @include('components.footer')

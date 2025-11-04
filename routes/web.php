@@ -19,6 +19,9 @@ Route::get('/ourteam', function () {
     return view('pages.user.ourteam');
 })->middleware(['auth', 'verified'])->name('ourteam');
 
+Route::get('/contact', function () {
+    return view('pages.user.contact');
+})->middleware(['auth', 'verified'])->name('contact');
 
 Route::get('/faq', function () {
     return view('pages.user.faq');

@@ -14,7 +14,7 @@
     <section class="min-h-screen bg-gray-900 relative overflow-hidden">
         {{-- Background Image --}}
         <div class="absolute inset-0 ">
-            <img src="{{ asset('img/motor.png') }}"
+            <img src="{{ asset('img/motor.webp') }}"
                  alt="Andalas Wheels Motorcycle Background"
                  class="w-full h-full ">
             <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
@@ -100,6 +100,10 @@
             </div>
         </div>
     </section>
+
+
+    {{-- footer Section --}}
+    @include('components.footer')
 
     @push('scripts')
         <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
