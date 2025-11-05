@@ -22,7 +22,7 @@
              data-aos="fade-up"
              data-aos-duration="1200">
             <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-8 mt-4 md:mt-0"
-                data-aos="fade-right"
+                data-aos="fade-up"
                 data-aos-delay="200">
                 Contact Us
             </h1>

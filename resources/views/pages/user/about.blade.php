@@ -22,7 +22,7 @@
              data-aos="fade-up"
              data-aos-duration="1200">
             <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-8 mt-4 md:mt-0"
-                data-aos="fade-right"
+                data-aos="fade-up"
                 data-aos-delay="200">
                 About Us
             </h1>
@@ -33,7 +33,7 @@
             </p>
             {{-- Wrapper untuk AOS --}}
             <div data-aos="zoom-in" data-aos-delay="600">
-                <a class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg mt-2 transform hover:scale-105 cursor-pointer">
+                <a href="#about-section" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg mt-2 transform hover:scale-105 cursor-pointer">
                     Find More
                 </a>
             </div>
@@ -41,7 +41,10 @@
     </section>
 
     {{-- About Section Description --}}
-    @include('components.aboutsection.desc')
+    <div id="about-section">
+            @include('components.aboutsection.desc')
+    </div>
+
 
     {{-- Footer --}}
     @include('components.footer')
@@ -49,10 +52,24 @@
     @push('scripts')
         <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
         <script>
-            AOS.init({
+            document.addEventListener('DOMContentLoaded', function() {
+                AOS.init({
                 duration: 1000,
                 once: false,
                 easing: 'ease-out-cubic'
+            });
+
+                // Smooth scroll for Get To Know Us button
+                const btn = document.querySelector('a[href="#about-section"]');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const target = document.getElementById('about-section');
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                }
             });
         </script>
     @endpush

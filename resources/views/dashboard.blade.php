@@ -25,13 +25,19 @@
             <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
                 {{-- Text Content --}}
-                <div class="space-y-8 mb-10" data-aos="fade-right" data-aos-duration="1000">
-                    <h1 class="text-4xl lg:text-6xl font-extrabold text-white leading-tight">
+                <div class="space-y-8 mb-10">
+                    <h1 class="text-4xl lg:text-6xl font-extrabold text-white leading-tight"
+                        data-aos="fade-up"
+                        data-aos-duration="1000"
+                        data-aos-delay="100">
                         Solusi Transportasi Hemat
                         <span class="block">& Mudah Untuk Mahasiswa</span>
                     </h1>
 
-                    <p class="text-xl text-gray-300 leading-relaxed max-w-lg">
+                    <p class="text-xl text-gray-300 leading-relaxed max-w-lg"
+                       data-aos="fade-right"
+                       data-aos-duration="1000"
+                       data-aos-delay="300">
                         Nikmati layanan rental motor cepat, aman, dan terjangkau khusus mahasiswa
                     </p>
 
