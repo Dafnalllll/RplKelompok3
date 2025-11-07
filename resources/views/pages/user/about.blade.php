@@ -45,6 +45,10 @@
             @include('components.aboutsection.desc')
     </div>
 
+   {{-- Our Team Section --}}
+   <div id="ourteam-section">
+       @include('components.aboutsection.ourteam')
+   </div>
 
     {{-- Footer --}}
     @include('components.footer')

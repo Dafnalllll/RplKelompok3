@@ -24,23 +24,33 @@
     ];
 @endphp
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center">
-    @foreach($faqs as $faq)
-    <table class="w-[600px] bg-white rounded-xl shadow-md overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer mx-auto">
-        <thead class="bg-blue-50">
-            <tr>
-                <th class="py-3 px-4 text-left text-blue-900 font-bold text-base">
-                    {{ $faq['question'] }}
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="py-4 px-6 text-gray-700 text-sm">
-                    {{ $faq['answer'] }}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 justify-center px-2 sm:px-4">
+    @foreach($faqs as $i => $faq)
+    <div
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-delay="{{ $i * 100 }}"
+        data-aos-once="false"
+        class="w-full flex"
+    >
+        <table
+            class="w-full max-w-[600px] bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 cursor-pointer mx-auto hover:scale-100 sm:hover:scale-105"
+        >
+            <thead class="bg-blue-50">
+                <tr>
+                    <th class="py-3 px-4 text-left text-blue-900 font-bold text-base">
+                        {{ $faq['question'] }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="py-4 px-4 sm:px-6 text-gray-700 text-sm">
+                        {{ $faq['answer'] }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     @endforeach
 </div>

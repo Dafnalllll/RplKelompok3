@@ -40,6 +40,26 @@
         </div>
     </section>
 
+      {{-- Ask Section --}}
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8"
+        data-aos="fade-up"
+        data-aos-duration="1200">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Have Questions?</h2>
+            @include('components.contactsection.ask')
+        </div>
+    </section>
+
+    {{-- Map Section --}}
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8"
+        data-aos="fade-up"
+        data-aos-duration="1200">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Find Us Here</h2>
+            @include('components.contactsection.map')
+        </div>
+    </section>
+
     {{-- Footer --}}
     @include('components.footer')
 

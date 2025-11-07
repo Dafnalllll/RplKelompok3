@@ -27,6 +27,10 @@ Route::get('/faq', function () {
     return view('pages.user.faq');
 })->middleware(['auth', 'verified'])->name('faq');
 
+Route::get('/howtopayment', function () {
+    return view('pages.user.howtopayment');
+})->middleware(['auth', 'verified'])->name('payment');
+
 Route::get('/dashboardadmin', function () {
     return view('pages.admin.dashboardadmin');
 })->name('dashboardadmin');
