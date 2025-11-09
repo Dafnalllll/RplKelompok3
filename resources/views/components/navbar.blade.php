@@ -11,31 +11,37 @@
     </button>
     <!-- Menu -->
     <div id="nav-menu" class="fixed top-0 left-0 w-full h-full bg-gray-900/80 backdrop-blur-md flex flex-col items-center justify-center gap-6 text-white transition-all duration-300 ease-in-out scale-0 opacity-0 sm:static sm:scale-100 sm:opacity-100 sm:flex-row sm:bg-transparent sm:backdrop-blur-0 sm:h-auto sm:w-auto sm:justify-end sm:items-center sm:gap-12 z-40 rounded-b-3xl sm:rounded-none">
-        <a href="{{ url('/dashboard') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('dashboard') ? 'active' : '' }} hover:text-yellow-400 transition" data-menu="home">
+        <a href="{{ url('/dashboard') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('dashboard') ? 'active' : '' }} hover:text-yellow-400 transition-all hover:scale-105" data-menu="home">
             Home
             <span class="hidden sm:block absolute left-0 -bottom-1 h-1 bg-yellow-400 rounded-full transition-all duration-300
                 {{ Request::is('dashboard') ? 'w-full' : 'w-0 group-hover:w-full' }}">
             </span>
         </a>
-        <a href="{{ url('/about') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('about') ? 'active' : '' }} hover:text-yellow-400 transition" data-menu="about">
+        <a href="{{ url('/about') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('about') ? 'active' : '' }} hover:text-yellow-400 transition-all hover:scale-105" data-menu="about">
             About Us
             <span class="hidden sm:block absolute left-0 -bottom-1 h-1 bg-yellow-400 rounded-full transition-all duration-300
                 {{ Request::is('about') ? 'w-full' : 'w-0 group-hover:w-full' }}">
             </span>
         </a>
-        <a href="{{ url('/faq') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('faq') ? 'active' : '' }} hover:text-yellow-400 transition" data-menu="faq">
+         <a href="{{ url('/order') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('contact') ? 'active' : '' }} hover:text-yellow-400 transition-all hover:scale-105" data-menu="contact">
+            Order
+            <span class="hidden sm:block absolute left-0 -bottom-1 h-1 bg-yellow-400 rounded-full transition-all duration-300
+                {{ Request::is('order') ? 'w-full' : 'w-0 group-hover:w-full' }}">
+            </span>
+        </a>
+        <a href="{{ url('/faq') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('faq') ? 'active' : '' }} hover:text-yellow-400 transition-all hover:scale-105" data-menu="faq">
             FAQ
             <span class="hidden sm:block absolute left-0 -bottom-1 h-1 bg-yellow-400 rounded-full transition-all duration-300
                 {{ Request::is('faq') ? 'w-full' : 'w-0 group-hover:w-full' }}">
             </span>
         </a>
-        <a href="{{ url('/contact') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('contact') ? 'active' : '' }} hover:text-yellow-400 transition" data-menu="contact">
+        <a href="{{ url('/contact') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('contact') ? 'active' : '' }} hover:text-yellow-400 transition-all hover:scale-105" data-menu="contact">
             Contact Us
             <span class="hidden sm:block absolute left-0 -bottom-1 h-1 bg-yellow-400 rounded-full transition-all duration-300
                 {{ Request::is('contact') ? 'w-full' : 'w-0 group-hover:w-full' }}">
             </span>
         </a>
-        <a href="{{ url('/howtopayment') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('howtopayment') ? 'active' : '' }} hover:text-yellow-400 transition" data-menu="payment">
+        <a href="{{ url('/howtopayment') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('howtopayment') ? 'active' : '' }} hover:text-yellow-400 transition-all hover:scale-105" data-menu="payment">
             Payment
             <span class="hidden sm:block absolute left-0 -bottom-1 h-1 bg-yellow-400 rounded-full transition-all duration-300
                 {{ Request::is('howtopayment') ? 'w-full' : 'w-0 group-hover:w-full' }}">

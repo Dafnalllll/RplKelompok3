@@ -15,6 +15,10 @@ Route::get('/about', function () {
     return view('pages.user.about');
 })->middleware(['auth', 'verified'])->name('about');
 
+Route::get('order', function (){
+    return view('pages.user.order');
+})->middleware(['auth', 'verified'])->name('order');
+
 Route::get('/ourteam', function () {
     return view('pages.user.ourteam');
 })->middleware(['auth', 'verified'])->name('ourteam');

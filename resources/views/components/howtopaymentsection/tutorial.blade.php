@@ -35,7 +35,7 @@
         ],
     ];
 @endphp
-<div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl p-4 sm:p-8 mt-10 mb-16"
+<div class="max-w-5xl mx-auto bg-white  p-4 sm:p-8 mt-10 mb-16"
      data-aos="fade-up"
      data-aos-duration="1200"
      data-aos-delay="200">
