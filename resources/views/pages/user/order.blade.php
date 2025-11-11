@@ -78,5 +78,19 @@
                 easing: 'ease-out-cubic'
             });
         </script>
+        <script>
+            function showProductDetail(index) {
+                document.getElementById('product-modal-' + index).classList.remove('hidden');
+            }
+            function closeProductModal(index) {
+                document.getElementById('product-modal-' + index).classList.add('hidden');
+            }
+            // Tutup semua modal
+            function closeAllProductModals() {
+                document.querySelectorAll('[id^="product-modal-"]').forEach(function(modal) {
+                    modal.classList.add('hidden');
+                });
+            }
+        </script>
     @endpush
 </x-app-layout>

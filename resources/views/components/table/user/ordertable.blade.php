@@ -45,7 +45,7 @@
 @endphp
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    @foreach($products as $product)
+    @foreach($products as $i => $product)
     <div class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col items-center p-7 relative group overflow-hidden">
         {{-- Decorative gradient circle --}}
         <div class="absolute -top-10 -left-10 w-32 h-32 bg-gradient-to-br from-yellow-200 via-yellow-100 to-white rounded-full opacity-40 z-0"></div>
@@ -60,14 +60,17 @@
             </div>
             <div class="text-yellow-600 font-extrabold text-xl mb-2 drop-shadow">Rp {{ number_format($product['price'], 0, ',', '.') }} <span class="font-normal text-sm">/ hari</span></div>
             <p class="text-gray-600 text-sm mb-5">{{ $product['desc'] }}</p>
-            <button class="bg-yellow-400 hover:bg-yellow-500 text-[#21408E] font-bold px-7 py-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-300">
-                <i class="fa-solid fa-cart-plus mr-2"></i> Pilih Motor
-            </button>
+            <div class="flex flex-col gap-2">
+                <button class="bg-yellow-400 hover:bg-yellow-500 text-[#21408E] font-bold px-7 py-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-300">
+                    <i class="fa-solid fa-cart-plus mr-2"></i> Pilih Motor
+                </button>
+            </div>
         </div>
         <div class="absolute bottom-4 right-4 z-0">
             <i class="fa-solid fa-motorcycle text-blue-100 text-4xl opacity-20"></i>
         </div>
     </div>
+
     @endforeach
 </div>
 
@@ -79,3 +82,5 @@
         <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
     </a>
 </div>
+
+
