@@ -8,6 +8,7 @@
             'year' => 2022,
             'price' => 60000,
             'desc' => 'Irit, ringan, cocok untuk harian dan mahasiswa.',
+            'stock' => 8,
         ],
         [
             'name' => 'Yamaha Mio',
@@ -16,6 +17,7 @@
             'year' => 2021,
             'price' => 55000,
             'desc' => 'Desain stylish, nyaman untuk perjalanan jauh.',
+            'stock' => 5,
         ],
         [
             'name' => 'Honda Vario 125',
@@ -24,6 +26,7 @@
             'year' => 2023,
             'price' => 70000,
             'desc' => 'Performa tinggi, bagasi luas, cocok untuk keluarga.',
+            'stock' => 3,
         ],
         [
             'name' => 'Yamaha NMAX',
@@ -32,6 +35,7 @@
             'year' => 2022,
             'price' => 120000,
             'desc' => 'Matic premium, nyaman dan bertenaga.',
+            'stock' => 2,
         ],
         [
             'name' => 'Honda Supra X 125',
@@ -40,6 +44,7 @@
             'year' => 2020,
             'price' => 50000,
             'desc' => 'Motor bebek legendaris, irit dan bandel.',
+            'stock' => 6,
         ],
     ];
 @endphp
@@ -59,6 +64,7 @@
                 <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full font-semibold shadow-sm">{{ $product['year'] }}</span>
             </div>
             <div class="text-yellow-600 font-extrabold text-xl mb-2 drop-shadow">Rp {{ number_format($product['price'], 0, ',', '.') }} <span class="font-normal text-sm">/ hari</span></div>
+            <div class="text-gray-500 text-sm mb-2">Stok: <span class="font-semibold">{{ $product['stock'] }}</span></div>
             <p class="text-gray-600 text-sm mb-5">{{ $product['desc'] }}</p>
             <div class="flex flex-col gap-2">
                 <button class="bg-yellow-400 hover:bg-yellow-500 text-[#21408E] font-bold px-7 py-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-300">

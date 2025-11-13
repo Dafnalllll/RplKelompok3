@@ -42,9 +42,10 @@
 
                     <div>
                         <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500">
-                            <button class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-lg text-base sm:text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                            <a href="{{ url('/order') }}"
+                               class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-lg text-base sm:text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl inline-block">
                                 Order Now
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

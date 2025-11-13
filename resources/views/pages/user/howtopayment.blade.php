@@ -34,7 +34,7 @@
             </p>
             {{-- Wrapper untuk AOS --}}
             <div data-aos="zoom-in" data-aos-delay="600">
-                <a class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg mt-2 transform hover:scale-105 cursor-pointer">
+                <a href="#tutorial-section" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg mt-2 transform hover:scale-105 cursor-pointer">
                     Learn More
                 </a>
             </div>
@@ -52,11 +52,22 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 AOS.init({
-                duration: 1000,
-                once: false,
-                easing: 'ease-out-cubic'
+                    duration: 1000,
+                    once: false,
+                    easing: 'ease-out-cubic'
+                });
+
+                // Smooth scroll for Learn More
+                document.querySelectorAll('a[href^="#tutorial-section"]').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                });
             });
-        });
         </script>
     @endpush
 </x-app-layout>
