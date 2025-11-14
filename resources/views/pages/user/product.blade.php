@@ -1,6 +1,6 @@
 {{-- filepath: d:\Dafa Code\Rplkel3\resources\views\pages\user\product.blade.php --}}
 
-@section('title', 'Andalas Wheels || Semua Produk')
+@section('title', 'Andalas Wheels || Product')
 
 @push('head')
     <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">
@@ -13,6 +13,13 @@
     <div class="bg-gray-50 min-h-screen py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 class="text-3xl font-extrabold text-[#21408E] mb-8 text-center">Semua Produk Motor</h1>
+
+            {{-- Search Bar --}}
+            @include('components.product.search')
+
+            {{-- Filter Bar --}}
+            @include('components.product.filter')
+
             @php
                 $products = [
                     [

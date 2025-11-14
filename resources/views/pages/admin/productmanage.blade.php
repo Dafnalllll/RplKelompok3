@@ -54,7 +54,7 @@
                 </div>
 
                 {{-- Product Table --}}
-                @include('components.table.producttable')
+                @include('components.table.admin.producttable')
 
                 {{-- Pagination --}}
                 <div class="flex items-center justify-center mt-8 space-x-2">

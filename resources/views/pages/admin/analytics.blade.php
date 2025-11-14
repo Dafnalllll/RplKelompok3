@@ -33,6 +33,9 @@
                     <h1 class="text-3xl font-bold text-blue-800">Analytics</h1>
                 </div>
 
+                {{-- Grafik Stok Motor --}}
+                @include('components.analyticssection.graph')
+
             </main>
         </div>
     </div>

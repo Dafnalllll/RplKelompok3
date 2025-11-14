@@ -1,4 +1,4 @@
-@section('title', 'Andalas Wheels || Order')
+@section('title', 'Andalas Wheels || Motorcycle')
 @push('head')
     <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
