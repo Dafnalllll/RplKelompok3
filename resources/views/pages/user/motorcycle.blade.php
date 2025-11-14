@@ -63,7 +63,7 @@
     {{-- Section: Tabel Produk Motor --}}
     <section id="product-table-section" class="relative z-20 py-20 bg-gradient-to-b from-white/90 to-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up" data-aos-delay="200">
-            @include('components.table.user.ordertable')
+            @include('components.table.user.motorcycletable')
         </div>
     </section>
 

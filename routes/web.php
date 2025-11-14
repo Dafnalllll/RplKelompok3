@@ -15,9 +15,14 @@ Route::get('/about', function () {
     return view('pages.user.about');
 })->middleware(['auth', 'verified'])->name('about');
 
-Route::get('order', function (){
-    return view('pages.user.order');
-})->middleware(['auth', 'verified'])->name('order');
+Route::get('/motorcycle', function (){
+    return view('pages.user.motorcycle');
+})->middleware(['auth', 'verified'])->name('motorcycle');
+
+
+Route::get('/product', function () {
+    return view('pages.user.product');
+})->middleware(['auth', 'verified'])->name('product');
 
 Route::get('/ourteam', function () {
     return view('pages.user.ourteam');

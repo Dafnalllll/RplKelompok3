@@ -23,10 +23,10 @@
                 {{ Request::is('about') ? 'w-full' : 'w-0 group-hover:w-full' }}">
             </span>
         </a>
-         <a href="{{ url('/order') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('contact') ? 'active' : '' }} hover:text-yellow-400 transition-all hover:scale-105" data-menu="contact">
-            Order
+         <a href="{{ url('/motorcycle') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('motorcycle') ? 'active' : '' }} hover:text-yellow-400 transition-all hover:scale-105" data-menu="motorcycle">
+            Motorcycle
             <span class="hidden sm:block absolute left-0 -bottom-1 h-1 bg-yellow-400 rounded-full transition-all duration-300
-                {{ Request::is('order') ? 'w-full' : 'w-0 group-hover:w-full' }}">
+                {{ Request::is('motorcycle') ? 'w-full' : 'w-0 group-hover:w-full' }}">
             </span>
         </a>
         <a href="{{ url('/faq') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('faq') ? 'active' : '' }} hover:text-yellow-400 transition-all hover:scale-105" data-menu="faq">
