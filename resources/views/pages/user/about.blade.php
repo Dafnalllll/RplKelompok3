@@ -1,20 +1,21 @@
 {{-- filepath: d:\Dafa Code\Rplkel3\resources\views\pages\user\about.blade.php --}}
 @section('title', 'Andalas Wheels || About Us')
 @push('head')
-    <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">
+    <link rel="icon" type="image/webp" href="{{ asset('img/andalaswheels.webp') }}">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
+
+<div class="fixed inset-0 -z-10">
+    <img src="{{ asset('img/about.webp') }}"
+         alt="Andalas Wheels Motorcycle Background"
+         class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
+</div>
+
 <x-app-layout>
     @include('components.navbar')
-    <section class="min-h-screen relative flex items-center bg-gray-900 overflow-hidden">
-        {{-- Background Image --}}
-        <div class="absolute inset-0 w-full h-full z-0">
-            <img src="{{ asset('img/about.webp') }}"
-                 alt="Andalas Wheels Background"
-                 class="w-full h-full object-cover object-center" />
-            <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
-        </div>
+    <section class="min-h-screen relative flex items-center overflow-hidden">
         {{-- Decorative Dot --}}
         <div class="absolute top-24 left-10 w-3 h-3 bg-yellow-400 rounded-full opacity-80 z-10"></div>
         {{-- Content --}}
@@ -41,14 +42,14 @@
     </section>
 
     {{-- About Section Description --}}
-    <div id="about-section">
-            @include('components.aboutsection.desc')
+    <div id="about-section" class="bg-white">
+        @include('components.aboutsection.desc')
     </div>
 
-   {{-- Our Team Section --}}
-   <div id="ourteam-section">
-       @include('components.aboutsection.ourteam')
-   </div>
+    {{-- Our Team Section --}}
+    <div id="ourteam-section" class="bg-white">
+        @include('components.aboutsection.ourteam')
+    </div>
 
     {{-- Footer --}}
     @include('components.footer')
@@ -58,12 +59,12 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 AOS.init({
-                duration: 1000,
-                once: false,
-                easing: 'ease-out-cubic'
-            });
+                    duration: 1000,
+                    once: false,
+                    easing: 'ease-out-cubic'
+                });
 
-                // Smooth scroll for Get To Know Us button
+                // Smooth scroll for Find More button
                 const btn = document.querySelector('a[href="#about-section"]');
                 if (btn) {
                     btn.addEventListener('click', function(e) {

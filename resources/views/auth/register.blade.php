@@ -10,7 +10,7 @@
         <!-- Kiri: logo dan teks -->
         <div class="w-1/2 flex flex-col items-center justify-center">
             <div class="mb-10" data-aos="zoom-in" data-aos-duration="1000">
-                <img src="{{ asset('img/andalaswheels.png') }}" alt="Logo" class="w-28 h-28" />
+                <img src="{{ asset('img/andalaswheels.webp') }}" alt="Logo" class="w-28 h-28" />
             </div>
             <div class="text-3xl font-bold font-[Carena] text-[#21408E] mb-4" data-aos="fade-down" data-aos-duration="1000">
                 AndalasWheels

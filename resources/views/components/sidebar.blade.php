@@ -1,8 +1,10 @@
 <!-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\sidebar.blade.php -->
 <div class="w-64 bg-gradient-to-b from-slate-800 to-slate-900 min-h-screen shadow-2xl flex flex-col">
     <!-- Header -->
-    <div class="p-6 border-b border-slate-700">
-        <h1 class="text-white text-xl font-bold">Andalaswheel</h1>
+    <div class="p-6 border-b border-slate-700 flex justify-center">
+        <a href="{{ route('dashboard') }}" class="transition-transform duration-300 hover:scale-110 block">
+            <img src="{{ asset('img/andalaswheels.webp') }}" alt="Andalas Wheels" class="w-12 h-12 object-contain mx-auto" />
+        </a>
     </div>
 
     <!-- Navigation Menu -->

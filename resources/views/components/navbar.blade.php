@@ -1,16 +1,16 @@
 <!-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\navbar.blade.php -->
-<nav class="w-full bg-gray-900 flex items-center justify-between px-4 sm:px-12 py-4 shadow relative z-50">
+<nav id="main-navbar" class="fixed top-0 left-0 right-0 w-full bg-transparent flex items-center justify-between px-4 sm:px-12 py-4 shadow z-50 transition-colors duration-300">
     <!-- Logo & Brand -->
     <div class="flex items-center gap-4">
-        <img src="{{ asset('img/andalaswheels.png') }}" alt="Logo" class="w-10 h-10 sm:w-14 sm:h-14 border-[#21408E]" />
-        <span class="text-lg sm:text-2xl font-bold text-[#21408E] font-[Montserrat]">Andalas Wheels</span>
+        <img src="{{ asset('img/andalaswheels.webp') }}" alt="Logo" class="w-10 h-10 sm:w-14 sm:h-14 border-[#21408E]" />
+        <span class="text-lg sm:text-2xl font-bold text-[#0845de] font-[Montserrat]">Andalas Wheels</span>
     </div>
     <!-- Hamburger (mobile) -->
     <button class="sm:hidden block text-white focus:outline-none z-50" id="nav-toggle">
         <i id="nav-icon" class="fas fa-bars text-2xl"></i>
     </button>
     <!-- Menu -->
-    <div id="nav-menu" class="fixed top-0 left-0 w-full h-full bg-gray-900/80 backdrop-blur-md flex flex-col items-center justify-center gap-6 text-white transition-all duration-300 ease-in-out scale-0 opacity-0 sm:static sm:scale-100 sm:opacity-100 sm:flex-row sm:bg-transparent sm:backdrop-blur-0 sm:h-auto sm:w-auto sm:justify-end sm:items-center sm:gap-12 z-40 rounded-b-3xl sm:rounded-none">
+    <div id="nav-menu" class="fixed top-0 left-0 w-full h-full bg-transparent backdrop-blur-md flex flex-col items-center justify-center gap-6 text-white transition-all duration-300 ease-in-out scale-0 opacity-0 sm:static sm:scale-100 sm:opacity-100 sm:flex-row sm:bg-transparent sm:backdrop-blur-0 sm:h-auto sm:w-auto sm:justify-end sm:items-center sm:gap-12 z-40 rounded-b-3xl sm:rounded-none">
         <a href="{{ url('/dashboard') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('dashboard') ? 'active' : '' }} hover:text-yellow-400 transition-all hover:scale-105" data-menu="home">
             Home
             <span class="hidden sm:block absolute left-0 -bottom-1 h-1 bg-yellow-400 rounded-full transition-all duration-300
@@ -76,7 +76,7 @@
         @auth
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="text-xl font-medium text-black hover:text-[#21408E] transition">Logout</button>
+                <button type="submit" class="text-xl font-medium text-[#0845de] hover:text-yellow-400 transition">Logout</button>
             </form>
         @else
             <a href="{{ route('login') }}" class="text-xl font-medium text-black">Log In</a>
@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     const navIcon = document.getElementById('nav-icon');
+    const navbar = document.getElementById('main-navbar');
 
     navToggle.addEventListener('click', function() {
         if (navMenu.classList.contains('scale-0')) {
@@ -116,6 +117,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.style.overflow = '';
             }
         });
+    });
+
+    // Change navbar background on scroll
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.remove('bg-transparent');
+            navbar.classList.add('bg-[#21408E]', 'backdrop-blur-md');
+        } else {
+            navbar.classList.add('bg-transparent');
+            navbar.classList.remove('bg-[#21408E]', 'backdrop-blur-md');
+        }
     });
 });
 </script>

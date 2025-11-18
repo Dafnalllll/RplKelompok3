@@ -1,130 +1,114 @@
 {{-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\product\filter.blade.php --}}
-
 <style>
-.select-wrapper {
-    position: relative;
-    display: inline-block;
-}
-.custom-select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    padding-right: 2.5rem !important;
-    background: none;
-}
-.select-arrow {
-    pointer-events: none;
-    position: absolute;
-    right: 1.2rem;
-    top: 50%;
-    transform: translateY(-50%) rotate(0deg);
-    transition: transform 0.3s cubic-bezier(.4,2,.6,1);
-    width: 1.2em;
-    height: 1.2em;
-    color: #21408E;
-}
-.select-wrapper.open .select-arrow {
-    transform: translateY(-50%) rotate(180deg);
-}
+    select {
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        background-image: none !important;
+    }
 </style>
+<div class="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-2xl shadow-lg mb-8 border border-blue-200">
+    <form method="GET" action="{{ url()->current() }}" class="flex flex-col md:flex-row gap-4 items-center">
+        {{-- Filter Tahun --}}
+        <div class="flex flex-col w-full md:w-1/4 relative">
+            <label for="filter-year" class="mb-1 text-sm font-semibold text-blue-900 flex items-center gap-2">
+                <i class="fa fa-calendar-alt"></i> Tahun
+            </label>
+            <div class="relative">
+                <select name="year" id="filter-year" class="border border-blue-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 transition w-full appearance-none pr-10">
+                    <option value="">Semua Tahun</option>
+                    @foreach([2023,2022,2021,2020] as $th)
+                        <option value="{{ $th }}" {{ request('year') == $th ? 'selected' : '' }}>{{ $th }}</option>
+                    @endforeach
+                </select>
+                <span class="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 transition-transform duration-300" id="arrow-year">
+                    <svg class="w-4 h-4 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+
+        {{-- Filter Tipe --}}
+        <div class="flex flex-col w-full md:w-1/4 relative">
+            <label for="filter-category" class="mb-1 text-sm font-semibold text-blue-900 flex items-center gap-2">
+                <i class="fa fa-motorcycle"></i> Tipe
+            </label>
+            <div class="relative">
+                <select name="category" id="filter-category" class="border border-blue-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 transition w-full appearance-none pr-10">
+                    <option value="">Semua Tipe</option>
+                    @foreach(['Matic','Matic Premium','Sport Matic','Matic Hybrid','Bebek'] as $type)
+                        <option value="{{ $type }}" {{ request('category') == $type ? 'selected' : '' }}>{{ $type }}</option>
+                    @endforeach
+                </select>
+                <span class="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 transition-transform duration-300" id="arrow-category">
+                    <svg class="w-4 h-4 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+
+        {{-- Filter Harga --}}
+        <div class="flex flex-col w-full md:w-1/4 relative">
+            <label for="filter-price" class="mb-1 text-sm font-semibold text-blue-900 flex items-center gap-2">
+                <i class="fa fa-money-bill-wave"></i> Harga
+            </label>
+            <div class="relative">
+                <select name="price" id="filter-price" class="border border-blue-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 transition w-full appearance-none pr-10">
+                    <option value="">Semua Harga</option>
+                    <option value="1" {{ request('price') == '1' ? 'selected' : '' }}>Di bawah Rp 60.000</option>
+                    <option value="2" {{ request('price') == '2' ? 'selected' : '' }}>Rp 60.000 - Rp 100.000</option>
+                    <option value="3" {{ request('price') == '3' ? 'selected' : '' }}>Di atas Rp 100.000</option>
+                </select>
+                <span class="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 transition-transform duration-300" id="arrow-price">
+                    <svg class="w-4 h-4 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+
+        {{-- Tombol --}}
+        <div class="flex gap-2 mt-4 md:mt-7">
+            <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold shadow hover:bg-blue-700 transition flex items-center gap-2">
+                <i class="fa fa-filter"></i> Filter
+            </button>
+            <button type="button" id="reset-filter" class="bg-red-600 text-white px-5 py-2 rounded-lg font-semibold shadow hover:bg-red-700 transition flex items-center gap-2">
+                <i class="fa fa-undo"></i> Reset
+            </button>
+        </div>
+    </form>
+</div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.select-wrapper').forEach(function(wrapper) {
-        const select = wrapper.querySelector('.custom-select');
-        select.addEventListener('mousedown', function(e) {
-            wrapper.classList.toggle('open');
-        });
-        select.addEventListener('blur', function() {
-            wrapper.classList.remove('open');
-        });
-        // Tambahkan event change agar arrow kembali turun setelah memilih
-        select.addEventListener('change', function() {
-            wrapper.classList.remove('open');
-        });
+    // Panah select animasi
+    function addArrowToggle(selectId, arrowId) {
+        const select = document.getElementById(selectId);
+        const arrow = document.getElementById(arrowId);
+        if (select && arrow) {
+            select.addEventListener('focus', () => {
+                arrow.classList.add('rotate-180');
+            });
+            select.addEventListener('blur', () => {
+                arrow.classList.remove('rotate-180');
+            });
+        }
+    }
+    addArrowToggle('filter-year', 'arrow-year');
+    addArrowToggle('filter-category', 'arrow-category');
+    addArrowToggle('filter-price', 'arrow-price');
+
+    // Reset filter
+    document.addEventListener('DOMContentLoaded', function() {
+        const resetFilter = document.getElementById('reset-filter');
+        if (resetFilter) {
+            resetFilter.addEventListener('click', function() {
+                document.getElementById('filter-year').value = '';
+                document.getElementById('filter-category').value = '';
+                document.getElementById('filter-price').value = '';
+                this.closest('form').submit();
+            });
+        }
     });
-    document.addEventListener('mousedown', function(e) {
-        document.querySelectorAll('.select-wrapper.open').forEach(function(wrapper) {
-            if (!wrapper.contains(e.target)) {
-                wrapper.classList.remove('open');
-            }
-        });
-    });
-});
 </script>
-
-<form action="{{ url('/product') }}" method="GET" class="max-w-4xl mx-auto mb-10">
-    <div class="flex flex-wrap gap-4 justify-center items-center bg-white rounded-2xl shadow-lg px-6 py-5 border border-gray-100">
-        {{-- Kategori --}}
-        <div class="select-wrapper">
-            <select name="category" class="custom-select rounded-full px-5 py-2 border border-gray-200 bg-gray-50 text-gray-700 shadow focus:ring-2 focus:ring-yellow-400 focus:outline-none transition-all duration-200 cursor-pointer">
-                <option value="">Semua Kategori</option>
-                <option value="Matic" {{ request('category') == 'Matic' ? 'selected' : '' }}>Matic</option>
-                <option value="Matic Premium" {{ request('category') == 'Matic Premium' ? 'selected' : '' }}>Matic Premium</option>
-                <option value="Bebek" {{ request('category') == 'Bebek' ? 'selected' : '' }}>Bebek</option>
-                <option value="Sport" {{ request('category') == 'Sport' ? 'selected' : '' }}>Sport</option>
-                <option value="Hybrid" {{ request('category') == 'Hybrid' ? 'selected' : '' }}>Hybrid</option>
-            </select>
-            <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-            </svg>
-        </div>
-        {{-- Tahun --}}
-        <div class="select-wrapper">
-            <select name="year" class="custom-select rounded-full px-5 py-2 border border-gray-200 bg-gray-50 text-gray-700 shadow focus:ring-2 focus:ring-yellow-400 focus:outline-none transition-all duration-200 cursor-pointer">
-                <option value="">Semua Tahun</option>
-                @for($y = date('Y'); $y >= 2018; $y--)
-                    <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }}>{{ $y }}</option>
-                @endfor
-            </select>
-            <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-            </svg>
-        </div>
-        {{-- Harga --}}
-        <div class="select-wrapper">
-            <select name="price" class="custom-select rounded-full px-5 py-2 border border-gray-200 bg-gray-50 text-gray-700 shadow focus:ring-2 focus:ring-yellow-400 focus:outline-none transition-all duration-200 cursor-pointer">
-                <option value="">Semua Harga</option>
-                <option value="1" {{ request('price') == '1' ? 'selected' : '' }}>Di bawah Rp 60.000</option>
-                <option value="2" {{ request('price') == '2' ? 'selected' : '' }}>Rp 60.000 - Rp 100.000</option>
-                <option value="3" {{ request('price') == '3' ? 'selected' : '' }}>Di atas Rp 100.000</option>
-            </select>
-            <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-            </svg>
-        </div>
-        <button type="submit" class="bg-yellow-400 hover:bg-yellow-500 text-[#21408E] font-bold px-6 py-2 rounded-full shadow transition-all duration-200 flex items-center gap-2 hover:scale-105">
-            <i class="fa fa-filter"></i>
-            <span>Filter</span>
-        </button>
-        @if(request('category') || request('year') || request('price'))
-            <a href="{{ url('/product') }}"
-               class="bg-gray-200 hover:bg-red-400 text-gray-600 hover:text-white font-bold px-5 py-2 rounded-full transition-all duration-200 flex items-center gap-2 shadow hover:shadow-lg hover:scale-105"
-               title="Reset Filter">
-                <i class="fa fa-times"></i>
-                <span class="hidden sm:inline">Reset</span>
-            </a>
-        @endif
-    </div>
-    @if(request('category') || request('year') || request('price'))
-        <div class="text-center mt-3 text-gray-500 text-sm italic">
-            Filter aktif:
-            @if(request('category')) <span class="font-semibold text-[#21408E]">Kategori: {{ request('category') }}</span> @endif
-            @if(request('year')) <span class="font-semibold text-[#21408E]">Tahun: {{ request('year') }}</span> @endif
-            @if(request('price')) <span class="font-semibold text-[#21408E]">
-                Harga:
-                @if(request('price') == '1') Di bawah Rp 60.000
-                @elseif(request('price') == '2') Rp 60.000 - Rp 100.000
-                @else Di atas Rp 100.000
-                @endif
-            </span> @endif
-        </div>
-    @endif
-</form>
-
-@if(isset($products) && count($products) === 0)
-    <div class="flex flex-col items-center justify-center py-16">
-        <img src="{{ asset('img/empty-box.svg') }}" alt="Tidak ada produk" class="w-32 h-32 mb-4 opacity-70">
-        <p class="text-lg text-gray-400 font-semibold">Tidak ada produk yang ditemukan.</p>
-    </div>
-@endif

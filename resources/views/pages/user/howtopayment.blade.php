@@ -1,21 +1,21 @@
 @section('title', 'Andalas Wheels || How To Payment')
 @push('head')
-    <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">
+    <link rel="icon" type="image/webp" href="{{ asset('img/andalaswheels.webp') }}">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
 
+<div class="fixed inset-0 -z-10">
+    <img src="{{ asset('img/howtopayment.webp') }}"
+         alt="Andalas Wheels Motorcycle Background"
+         class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
+</div>
+
 <x-app-layout>
     @include('components.navbar')
 
-    <section class="min-h-screen relative flex items-center bg-gray-900 overflow-hidden">
-        {{-- Background Image --}}
-        <div class="absolute inset-0 w-full h-full z-0">
-            <img src="{{ asset('img/howtopayment.webp') }}"
-                 alt="Andalas Wheels Background"
-                 class="w-full h-full object-cover object-center" />
-            <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
-        </div>
+    <section class="min-h-screen relative flex items-center  overflow-hidden">
         {{-- Decorative Dot --}}
         <div class="absolute top-24 left-10 w-3 h-3 bg-yellow-400 rounded-full opacity-80 z-10"></div>
         {{-- Content --}}

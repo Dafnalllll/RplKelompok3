@@ -1,21 +1,21 @@
 @section('title', 'Andalas Wheels || FAQ')
 @push('head')
     <title>FAQ | Andalas Wheels</title>
-    <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">
+    <link rel="icon" type="image/webp" href="{{ asset('img/andalaswheels.webp') }}">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
+
+<div class="fixed inset-0 -z-10">
+    <img src="{{ asset('img/faq.webp') }}"
+         alt="Andalas Wheels Motorcycle Background"
+         class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
+</div>
+
 <x-app-layout>
     @include('components.navbar')
-    <section class="min-h-screen bg-gray-900 relative overflow-hidden flex items-center">
-        {{-- Background Image --}}
-        <div class="absolute inset-0 w-full h-full z-10">
-            <img src="{{ asset('img/faq.webp') }}"
-                 alt="Andalas Wheels Motorcycle Background"
-                 class="w-full h-full object-cover object-center" />
-            <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
-        </div>
-
+    <section class="min-h-screen relative overflow-hidden flex items-center">
         {{-- Content --}}
         <div class="relative z-10 w-full">
             <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
