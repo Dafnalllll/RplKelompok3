@@ -34,6 +34,6 @@
 @if(isset($products) && count($products) === 0)
     <div class="flex flex-col items-center justify-center py-16">
         <img src="{{ asset('img/empty-box.svg') }}" alt="Tidak ada produk" class="w-32 h-32 mb-4 opacity-70">
-        <p class="text-lg text-gray-400 font-semibold">Tidak ada produk yang ditemukan.</p>
+        <p class="text-lg text-gray-400 font-semibold">Tidak ada motor yang ditemukan.</p>
     </div>
 @endif

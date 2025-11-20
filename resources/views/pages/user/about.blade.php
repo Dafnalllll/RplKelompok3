@@ -1,7 +1,6 @@
 {{-- filepath: d:\Dafa Code\Rplkel3\resources\views\pages\user\about.blade.php --}}
 @section('title', 'Andalas Wheels || About Us')
 @push('head')
-    <link rel="icon" type="image/webp" href="{{ asset('img/andalaswheels.webp') }}">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
@@ -43,12 +42,12 @@
 
     {{-- About Section Description --}}
     <div id="about-section" class="bg-white">
-        @include('components.aboutsection.desc')
+        @include('components.user.aboutsection.desc')
     </div>
 
     {{-- Our Team Section --}}
     <div id="ourteam-section" class="bg-white">
-        @include('components.aboutsection.ourteam')
+        @include('components.user.aboutsection.ourteam')
     </div>
 
     {{-- Footer --}}
@@ -66,15 +65,15 @@
 
                 // Smooth scroll for Find More button
                 const btn = document.querySelector('a[href="#about-section"]');
-                if (btn) {
-                    btn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const target = document.getElementById('about-section');
-                        if (target) {
-                            target.scrollIntoView({ behavior: 'smooth' });
-                        }
-                    });
-                }
+if (btn) {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.getElementById('about-section');
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+}
             });
         </script>
     @endpush

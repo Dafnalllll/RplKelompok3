@@ -1,7 +1,6 @@
 @section('title', 'Andalas Wheels || Home')
 @push('head')
     <title>Home | Andalas Wheels</title>
-    <link rel="icon" type="image/webp" href="{{ asset('img/andalaswheels.webp') }}">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
@@ -60,7 +59,7 @@
     </section>
 
     {{-- Features Section (tidak tertimpa background hero) --}}
-    <section class="py-12 sm:py-20 bg-white">
+    <section class="py-12 sm:py-20 bg-gradient-to-br from-indigo-100 via-white to-indigo-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
                 {{-- Feature 1 --}}

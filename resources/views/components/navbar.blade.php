@@ -10,7 +10,7 @@
         <i id="nav-icon" class="fas fa-bars text-2xl"></i>
     </button>
     <!-- Menu -->
-    <div id="nav-menu" class="fixed top-0 left-0 w-full h-full bg-transparent backdrop-blur-md flex flex-col items-center justify-center gap-6 text-white transition-all duration-300 ease-in-out scale-0 opacity-0 sm:static sm:scale-100 sm:opacity-100 sm:flex-row sm:bg-transparent sm:backdrop-blur-0 sm:h-auto sm:w-auto sm:justify-end sm:items-center sm:gap-12 z-40 rounded-b-3xl sm:rounded-none">
+    <div id="nav-menu" class="fixed top-0 left-0 w-full h-full bg-blue-700 backdrop-blur-md flex flex-col items-center justify-center gap-6 text-white transition-all duration-300 ease-in-out scale-0 opacity-0 sm:static sm:scale-100 sm:opacity-100 sm:flex-row sm:bg-transparent sm:backdrop-blur-0 sm:h-auto sm:w-auto sm:justify-end sm:items-center sm:gap-12 z-40 rounded-b-3xl sm:rounded-none">
         <a href="{{ url('/dashboard') }}" class="group text-2xl sm:text-xl font-semibold relative nav-link {{ Request::is('dashboard') ? 'active' : '' }} hover:text-yellow-400 transition-all hover:scale-105" data-menu="home">
             Home
             <span class="hidden sm:block absolute left-0 -bottom-1 h-1 bg-yellow-400 rounded-full transition-all duration-300
@@ -119,14 +119,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Change navbar background on scroll
+    // Change navbar background on scroll (all devices)
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
             navbar.classList.remove('bg-transparent');
-            navbar.classList.add('bg-[#21408E]', 'backdrop-blur-md');
+            navbar.classList.add('bg-blue-800');
         } else {
             navbar.classList.add('bg-transparent');
-            navbar.classList.remove('bg-[#21408E]', 'backdrop-blur-md');
+            navbar.classList.remove('bg-blue-800');
         }
     });
 });

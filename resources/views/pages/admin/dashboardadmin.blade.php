@@ -1,7 +1,7 @@
 @section('title', 'Andalaswheel | Dashboard Admin')
 @push('head')
     <title>Andalaswheel | Dashboard Admin</title>
-    <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">
+    <link rel="icon" type="image/webp" href="{{ asset('img/andalaswheels.webp') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
 
@@ -114,15 +114,15 @@
                     {{-- Row 1: User Registration & Product Stock --}}
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                         {{-- User Registration --}}
-                        @include('components.tableactivity.useractivity')
+                        @include('components.admin.tableactivity.useractivity')
 
                         {{-- Stok Produk Tersisa --}}
-                        @include('components.tableactivity.productactivity')
+                        @include('components.admin.tableactivity.productactivity')
                     </div>
 
                     {{-- Row 2: Order Section (Full Width) --}}
                     <div class="w-full">
-                        @include('components.tableactivity.orderactivity')
+                        @include('components.admin.tableactivity.orderactivity')
                     </div>
                 </section>
             </main>

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">
+        <link rel="icon" type="image/webp" href="{{ asset('img/andalaswheels.webp') }}">
          <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
        <title>Andalas Wheels</title>
 
@@ -30,7 +30,7 @@
     <div class="absolute inset-0 bg-black/80 z-10"></div>
     <!-- Konten Get Started -->
     <div class="relative z-20 flex flex-col items-center justify-center min-h-screen">
-        <img src="{{ asset('img/andalaswheels.png') }}"
+        <img src="{{ asset('img/andalaswheels.webp') }}"
              alt="Logo"
              class="w-32 h-32 mb-6 drop-shadow-lg"
              data-aos="zoom-in"
@@ -42,13 +42,13 @@
                 data-aos-delay="800">
             <div
                 class="px-8 py-4 rounded-full border bg-transparent text-white text-xl font-bold font-[Carena]  transition-all duration-300 hover:scale-110 hover:bg-blue-700 cursor-pointer"
-               
+
                 onclick="window.location.href='{{ route('login') }}'">
                 Explore
             </div>
         </div>
     </div>
-   
+
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {

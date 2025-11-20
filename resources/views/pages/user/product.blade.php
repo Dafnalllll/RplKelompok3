@@ -8,17 +8,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
 
+{{-- Background Image --}}
+<div class="fixed inset-0 -z-10">
+    <img src="{{ asset('img/order.webp') }}"
+         alt="Motorcycle Background"
+         class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
+</div>
+
 <x-app-layout>
     @include('components.navbar')
-    <div class="bg-gray-50 min-h-screen py-12">
+    <div class="min-h-screen py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-extrabold text-[#21408E] mb-8 text-center">Semua Produk Motor</h1>
+            <h1 class="text-3xl font-extrabold text-white mb-8 text-center mt-20">Semua Produk Motor</h1>
 
             {{-- Search Bar --}}
-            @include('components.product.search')
+            @include('components.user.product.search')
 
             {{-- Filter Bar --}}
-            @include('components.product.filter')
+            @include('components.user.product.filter')
 
             @php
                 $products = [
@@ -169,7 +177,7 @@
             @if(count($products) === 0)
                 <div class="text-center py-20 text-gray-400 text-xl font-semibold">
                     <i class="fa fa-motorcycle text-5xl mb-4"></i>
-                    <div>Produk tidak ditemukan.</div>
+                    <div>Motor tidak ditemukan.</div>
                 </div>
             @else
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="product-list">

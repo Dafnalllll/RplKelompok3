@@ -34,7 +34,7 @@
                 </div>
 
                 {{-- Grafik Stok Motor --}}
-                @include('components.analyticssection.graph')
+                @include('components.admin.analyticssection.graph')
 
             </main>
         </div>

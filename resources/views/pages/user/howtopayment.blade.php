@@ -1,6 +1,5 @@
 @section('title', 'Andalas Wheels || How To Payment')
 @push('head')
-    <link rel="icon" type="image/webp" href="{{ asset('img/andalaswheels.webp') }}">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
@@ -42,7 +41,7 @@
     </section>
 
     {{-- Tutorial--}}
-    @include("components.howtopaymentsection.tutorial")
+    @include("components.user.howtopaymentsection.tutorial")
 
     {{-- Footer --}}
     @include('components.footer')

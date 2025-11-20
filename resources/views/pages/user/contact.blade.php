@@ -1,6 +1,5 @@
 @section('title', 'Andalas Wheels || Contact Us')
 @push('head')
-    <link rel="icon" type="image/webp" href="{{ asset('img/andalaswheels.webp') }}">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
@@ -15,7 +14,7 @@
 <x-app-layout>
     @include('components.navbar')
 
-    <section class="min-h-screen relative flex items-center  overflow-hidden">
+    <section class="min-h-screen relative flex items-center overflow-hidden">
         {{-- Decorative Dot --}}
         <div class="absolute top-24 left-10 w-3 h-3 bg-yellow-400 rounded-full opacity-80 z-10"></div>
         {{-- Content --}}
@@ -34,20 +33,20 @@
             </p>
             {{-- Wrapper untuk AOS --}}
             <div data-aos="zoom-in" data-aos-delay="600">
-                <a class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg mt-2 transform hover:scale-105 cursor-pointer">
+                <a href="#ask-section" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg mt-2 transform hover:scale-105 cursor-pointer">
                     Get in Touch
                 </a>
             </div>
         </div>
     </section>
 
-      {{-- Ask Section --}}
-    <section class="py-20 bg-gray-50">
+    {{-- Ask Section --}}
+    <section id="ask-section" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6 lg:px-8"
         data-aos="fade-up"
         data-aos-duration="1200">
             <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Have Questions?</h2>
-            @include('components.contactsection.ask')
+            @include('components.user.contactsection.ask')
         </div>
     </section>
 
@@ -57,7 +56,7 @@
         data-aos="fade-up"
         data-aos-duration="1200">
             <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Find Us Here</h2>
-            @include('components.contactsection.map')
+            @include('components.user.contactsection.map')
         </div>
     </section>
 
@@ -67,10 +66,24 @@
     @push('scripts')
         <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
         <script>
-            AOS.init({
-                duration: 1000,
-                once: false,
-                easing: 'ease-out-cubic'
+            document.addEventListener('DOMContentLoaded', function() {
+                AOS.init({
+                    duration: 1000,
+                    once: false,
+                    easing: 'ease-out-cubic'
+                });
+
+                // Smooth scroll untuk tombol Get in Touch
+                const btn = document.querySelector('a[href="#ask-section"]');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const target = document.getElementById('ask-section');
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                }
             });
         </script>
     @endpush
