@@ -49,12 +49,12 @@
         </a>
         <!-- Login / Logout (mobile) -->
         <div class="flex flex-col items-center gap-3 mt-6 sm:hidden">
-            <div class="bg-[#21408E] rounded p-2 flex items-center">
+            <a href="{{ route('profile.edit') }}" class="bg-[#21408E] rounded p-2 flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2" fill="white"/>
                     <path d="M4 20c0-4 8-4 8-4s8 0 8 4" stroke="white" stroke-width="2" fill="none"/>
                 </svg>
-            </div>
+            </a>
             @auth
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -66,18 +66,19 @@
         </div>
     </div>
     <!-- Login / Logout (desktop) -->
-    <div class="hidden sm:flex items-center gap-2">
-        <div class="bg-[#21408E] rounded p-2 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2" fill="white"/>
-                <path d="M4 20c0-4 8-4 8-4s8 0 8 4" stroke="white" stroke-width="2" fill="none"/>
-            </svg>
-        </div>
+    <div class="hidden sm:flex items-center gap-2 relative">
         @auth
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="text-xl font-medium text-[#0845de] hover:text-yellow-400 transition">Logout</button>
-            </form>
+            <!-- User Icon Button -->
+            <button id="user-menu-btn" class="bg-[#21408E] rounded p-2 flex items-center focus:outline-none relative">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2" fill="white"/>
+                    <path d="M4 20c0-4 8-4 8-4s8 0 8 4" stroke="white" stroke-width="2" fill="none"/>
+                </svg>
+            </button>
+            <!-- Dropdown -->
+            <div id="user-dropdown" class="hidden">
+                @include('components.dropdown.dropdownnavbarmenu')
+            </div>
         @else
             <a href="{{ route('login') }}" class="text-xl font-medium text-black">Log In</a>
         @endauth
@@ -129,5 +130,25 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.classList.remove('bg-blue-800');
         }
     });
+
+    // User dropdown (desktop)
+    const userBtn = document.getElementById('user-menu-btn');
+    const userDropdown = document.getElementById('user-dropdown');
+    if (userBtn && userDropdown) {
+        userBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+        });
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!userDropdown.classList.contains('hidden')) {
+                userDropdown.classList.add('hidden');
+            }
+        });
+        // Prevent closing when clicking inside dropdown
+        userDropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
 });
 </script>

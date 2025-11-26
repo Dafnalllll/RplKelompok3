@@ -1,4 +1,4 @@
-@section('title', 'Andalaswheel | Order Management')
+@section('title', 'Andalaswheel || Order Management')
 @push('head')
     <title>Andalaswheel | Order Management</title>
     <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">
@@ -6,33 +6,21 @@
 @endpush
 
 <x-app-layout>
-    <div class="flex min-h-screen bg-gray-100">
+    <div class="flex min-h-screen bg-gradient-to-br from-blue-100 via-yellow-50 to-blue-200">
         {{-- Sidebar --}}
-        @include('components.sidebar')
+        @include('components.admin.sidebar')
 
         {{-- Main Content --}}
-        <div class="flex-1">
-            {{-- Header --}}
-            <header class="bg-yellow-400 px-6 py-4 shadow-sm">
-                <div class="flex justify-end items-center">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-user text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Andalaswheel</h3>
-                            <p class="text-sm text-gray-600">Admin Andalaswheel</p>
-                        </div>
-                    </div>
+        <div class="flex-1 h-screen overflow-y-auto">
+            {{-- Header with Glassdrop --}}
+            <header class="sticky top-0 z-20 mb-8">
+                <div class="backdrop-blur-md bg-white/40 border border-white/30 shadow-lg rounded-2xl px-8 py-6 flex items-center justify-between">
+                    <h1 class="text-3xl font-bold text-blue-800 drop-shadow-lg">Order Management</h1>
+                    {{-- Tambahkan tombol/info lain di kanan header jika perlu --}}
                 </div>
             </header>
-            {{-- Order Management Content --}}
-            <main class="p-6">
-                {{-- Page Title --}}
-                <div class="mb-8">
-                    <h1 class="text-3xl font-bold text-blue-800">Order Management</h1>
-                </div>
 
+            <main class="p-6 min-h-screen">
                 {{-- Search and Add Button --}}
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
                     {{-- Search Bar --}}
@@ -55,10 +43,8 @@
                 {{-- Filter Component --}}
                 <x-filterorder />
                 {{-- Order Table --}}
-                @include('components.table.ordertable')
+                @include('components.table.admin.ordertable')
             </main>
-
-
-
         </div>
+    </div>
 </x-app-layout>

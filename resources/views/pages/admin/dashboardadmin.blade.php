@@ -1,39 +1,26 @@
 @section('title', 'Andalaswheel | Dashboard Admin')
 @push('head')
-    <title>Andalaswheel | Dashboard Admin</title>
+    <title>Andalaswheel || Dashboard Admin</title>
     <link rel="icon" type="image/webp" href="{{ asset('img/andalaswheels.webp') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
 
 <x-app-layout>
-    <div class="flex min-h-screen bg-gray-100">
+    <div class="flex min-h-screen bg-gradient-to-br from-blue-100 via-yellow-50 to-blue-200">
         {{-- Sidebar --}}
-        @include('components.sidebar')
+        @include('components.admin.sidebar')
 
         {{-- Main Content --}}
-        <div class="flex-1">
-            {{-- Header --}}
-            <header class="bg-yellow-400 px-6 py-4 shadow-sm">
-                <div class="flex justify-end items-center">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-user text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Andalaswheel</h3>
-                            <p class="text-sm text-gray-600">Admin Andalaswheel</p>
-                        </div>
-                    </div>
+        <div class="flex-1 h-screen overflow-y-auto">
+            {{-- Header with Glassdrop --}}
+            <header class="sticky top-0 z-20 mb-8">
+                <div class="backdrop-blur-md bg-white/40 border border-white/30 shadow-lg rounded-2xl px-8 py-6 flex items-center justify-between">
+                    <h1 class="text-3xl font-bold text-blue-800 drop-shadow-lg">Dashboard</h1>
+                    {{-- Tambahkan tombol/info lain di kanan header jika perlu --}}
                 </div>
             </header>
 
-            {{-- Dashboard Content --}}
-            <main class="p-6">
-                {{-- Page Title --}}
-                <div class="mb-8">
-                    <h1 class="text-3xl font-bold text-blue-800">Dashboard</h1>
-                </div>
-
+            <main class="p-6 min-h-screen">
                 {{-- Stats Cards --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     {{-- Total Order --}}
@@ -110,8 +97,6 @@
                     <div class="mb-6">
                         <h2 class="text-2xl font-bold text-gray-800">Aktivitas Terkini</h2>
                     </div>
-
-                    {{-- Row 1: User Registration & Product Stock --}}
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                         {{-- User Registration --}}
                         @include('components.admin.tableactivity.useractivity')
@@ -119,8 +104,6 @@
                         {{-- Stok Produk Tersisa --}}
                         @include('components.admin.tableactivity.productactivity')
                     </div>
-
-                    {{-- Row 2: Order Section (Full Width) --}}
                     <div class="w-full">
                         @include('components.admin.tableactivity.orderactivity')
                     </div>

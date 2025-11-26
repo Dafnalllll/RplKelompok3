@@ -1,10 +1,13 @@
-<!-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\sidebar.blade.php -->
+<!-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\admin\sidebar.blade.php -->
 <div class="w-64 bg-gradient-to-b from-slate-800 to-slate-900 min-h-screen shadow-2xl flex flex-col">
     <!-- Header -->
-    <div class="p-6 border-b border-slate-700 flex justify-center">
-        <a href="{{ route('dashboard') }}" class="transition-transform duration-300 hover:scale-110 block">
-            <img src="{{ asset('img/andalaswheels.webp') }}" alt="Andalas Wheels" class="w-12 h-12 object-contain mx-auto" />
+    <div class="p-6 border-b border-slate-700 flex flex-col items-center">
+        <a href="{{ route('dashboard') }}" class="transition-transform duration-300 hover:scale-110 block mb-2">
+            <div class="w-24 h-24 flex items-center justify-center transition-all duration-300">
+                <img src="{{ asset('img/andalaswheels.webp') }}" alt="Andalas Wheels" class="w-20 h-20 object-contain" />
+            </div>
         </a>
+        <span class="text-xl font-bold text-white tracking-wide drop-shadow-lg">Andalas Wheels</span>
     </div>
 
     <!-- Navigation Menu -->
@@ -37,21 +40,21 @@
                 </a>
             </li>
 
+            <!-- User Management -->
+            <li>
+                <a href="{{ route('usermanage') }}"
+                   class="flex items-center gap-3 px-4 py-3 text-slate-300 rounded-lg transition-all hover:scale-105 duration-300 hover:bg-slate-700 hover:text-white {{ request()->routeIs('usermanage') ? ' text-white' : '' }}">
+                    <i class="fas fa-user-cog text-lg"></i>
+                    <span class="font-medium">User Management</span>
+                </a>
+            </li>
+
             <!-- Analytics -->
             <li>
                 <a href="{{ route('analytics') }}"
                    class="flex items-center gap-3 px-4 py-3 text-slate-300 rounded-lg transition-all hover:scale-105 duration-300 hover:bg-slate-700 hover:text-white {{ request()->routeIs('analytics') ? ' text-white' : '' }}">
                     <i class="fas fa-chart-line text-lg"></i>
                     <span class="font-medium">Analytics</span>
-                </a>
-            </li>
-
-            <!-- Category Management -->
-            <li>
-                <a href="{{ route('categorymanage') }}"
-                   class="flex items-center gap-3 px-4 py-3 text-slate-300 rounded-lg transition-all hover:scale-105 duration-300 hover:bg-slate-700 hover:text-white {{ request()->routeIs('categorymanage') ? ' text-white' : '' }}">
-                    <i class="fas fa-th-large text-lg"></i>
-                    <span class="font-medium">Category Management</span>
                 </a>
             </li>
         </ul>

@@ -46,7 +46,7 @@
     </div>
 
     <div class="mt-6 text-right">
-        <a href="#" class="inline-flex items-center text-gray-700 hover:text-gray-900 font-medium text-sm transition-colors">
+        <a href="#" class="inline-flex items-center border border-blue-500 rounded-full px-5 py-2 text-blue-700 hover:bg-blue-50 hover:text-blue-900 font-medium text-sm transition-colors">
             Tambah Produk
             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

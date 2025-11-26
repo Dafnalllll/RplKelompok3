@@ -14,18 +14,19 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+        /* Desktop: tampilkan layout asli, sembunyikan card mobile */
+        @media (min-width: 769px) {
+            .login-mobile-card { display: none !important; }
+        }
+        /* Mobile: tampilkan card login saja, sembunyikan layout asli */
+        @media (max-width: 768px) {
+            .fixed.inset-0 { display: none !important; }
+            .login-mobile-card { display: flex !important; }
+        }
+        </style>
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
-
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
-        </div>
+        {{ $slot }}
     </body>
 </html>

@@ -1,3 +1,4 @@
+{{-- filepath: d:\Dafa Code\Rplkel3\resources\views\auth\login.blade.php --}}
 @section('title', 'Andalas Wheels || Login')
 @push('head')
     <title>Login | Andalas Wheels</title>
@@ -24,7 +25,7 @@
                 Dari Kampus ke Mana Aja, Tinggal Tancap!
             </div>
         </div>
-                <!-- Kanan: card login -->
+        <!-- Kanan: card login -->
         <div class="w-1/2 flex items-center justify-center min-h-screen">
             <div class="bg-[#21408E] rounded-tl-[200px] rounded-bl-[200px] shadow-lg w-[950px] h-[865px] p-20 relative"
                     data-aos="fade-left"
@@ -34,8 +35,8 @@
                 data-aos-duration="1000">
                     Log In
                 </div>
-                <!-- Session Status -->
-                <x-auth-session-status class="mb-4" :status="session('status')" />
+
+                <!-- Session Status (hapus alert manual & komponen duplikat) -->
 
                 <form method="POST" action="{{ route('login') }}" class="pt-32">
                     @csrf
@@ -98,7 +99,88 @@
             </div>
         </div>
     </div>
+
+    <!-- MOBILE ONLY: Card Login Saja -->
+    <div class="login-mobile-card flex items-center justify-center min-h-screen w-full bg-gradient-to-tr from-white via-blue-100 to-blue-300" style="display:none;">
+        <div class="bg-[#21408E] rounded-2xl shadow-lg w-full max-w-sm p-6 relative"
+        data-aos="fade-up"
+        data-aos-duration="1000">
+        <div class="w-full flex items-center justify-center gap-3 text-2xl font-bold text-white text-center mb-8 font-[Carena]"
+            data-aos="zoom-in"
+            data-aos-duration="900">
+            <img src="{{ asset('img/andalaswheels.webp') }}" alt="Logo" class="w-12 h-12 " />
+            Login
+        </div>
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+            <!-- Email Address -->
+            <div class="mb-8"
+                data-aos="fade-right"
+                data-aos-duration="900">
+                <x-input-label for="email" :value="__('Email')" class="mb-2 font-[Carena]" />
+                <x-text-input id="email" class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
+            <!-- Password -->
+            <div class="mb-8 relative"
+                data-aos="fade-left"
+                data-aos-duration="900">
+                <x-input-label for="password" :value="__('Password')" class="mb-2 font-[Carena]" />
+                <x-text-input id="password_mobile" class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2" type="password" name="password" required autocomplete="current-password" />
+                <button type="button" onclick="togglePassword('password_mobile', 'eyePasswordMobile')" class="absolute right-4 top-9 group">
+                    <span id="eyePasswordMobile" class="transition-colors duration-200 group-hover:text-blue-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M1.5 12s3.5-7 10.5-7 10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="12" r="3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </button>
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                @if (Route::has('password.request'))
+                    <div class="mt-2 text-right">
+                        <a class="text-sm text-white font-semibold font-[Poppins] hover:underline" href="{{ route('password.request') }}">
+                            Lupa Password ?
+                        </a>
+                    </div>
+                @endif
+            </div>
+            <!-- Remember Me -->
+            <div class="flex items-center mb-8"
+                data-aos="fade-right"
+                data-aos-duration="900">
+                <input id="remember_me_mobile" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 cursor-pointer" name="remember">
+                <label for="remember_me_mobile" class="ml-2 text-sm text-white font-semibold font-[Poppins]">Ingat saya</label>
+            </div>
+            <div data-aos="zoom-in" data-aos-duration="900">
+                <x-primary-button class="block w-full rounded-full bg-black text-white px-4 py-2 text-lg font-semibold hover:bg-gray-800 transition-all hover:scale-105 justify-center">
+                    Login
+                </x-primary-button>
+            </div>
+        </form>
+        <div class="mt-8 text-center"
+            data-aos="fade-up"
+            data-aos-duration="900">
+            <span class="text-sm text-white font-[Poppins]">Tidak punya Akun ?</span>
+            <a href="{{ route('register') }}" class="text-sm text-blue-600 hover:underline font-semibold font-[Poppins]">Daftar disini</a>
+        </div>
+    </div>
+    </div>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('status'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: '{{ session('status') }}',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true
+                });
+            });
+        </script>
+    @endif
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         AOS.init();

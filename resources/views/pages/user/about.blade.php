@@ -13,7 +13,7 @@
 </div>
 
 <x-app-layout>
-    @include('components.navbar')
+    @include('components.user.navbar')
     <section class="min-h-screen relative flex items-center overflow-hidden">
         {{-- Decorative Dot --}}
         <div class="absolute top-24 left-10 w-3 h-3 bg-yellow-400 rounded-full opacity-80 z-10"></div>

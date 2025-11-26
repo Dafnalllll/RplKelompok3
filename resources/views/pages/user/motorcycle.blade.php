@@ -13,7 +13,7 @@
 </div>
 
 <x-app-layout>
-    @include('components.navbar')
+    @include('components.user.navbar')
 
     {{-- Hero Section --}}
     <section class="min-h-screen relative overflow-hidden flex items-center">
@@ -21,7 +21,7 @@
         <div class="relative z-10 w-full">
             <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 {{-- Text Content --}}
-                <div class="space-y-8 mb-24">
+                <div class="space-y-8 mb-34">
                     <h1 class="text-4xl lg:text-6xl font-extrabold text-white leading-tight mb-8"
                         data-aos="fade-up"
                         data-aos-duration="1200"

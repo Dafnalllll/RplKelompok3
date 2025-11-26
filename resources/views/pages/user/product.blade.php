@@ -17,7 +17,7 @@
 </div>
 
 <x-app-layout>
-    @include('components.navbar')
+    @include('components.user.navbar')
     <div class="min-h-screen py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 class="text-3xl font-extrabold text-white mb-8 text-center mt-20">Semua Produk Motor</h1>

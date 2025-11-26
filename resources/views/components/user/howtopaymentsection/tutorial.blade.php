@@ -63,9 +63,9 @@
             </div>
             @endforeach
         </div>
-        <div class="mt-10 sm:mt-12 flex items-center gap-3 text-[#21408E] justify-center">
+        <div class="mt-10 sm:mt-12 flex items-center gap-3 text-yellow-400 justify-center">
             <i class="fa-brands fa-whatsapp text-green-500 text-xl sm:text-2xl"></i>
-            <span class="font-semibold text-sm sm:text-base">Butuh bantuan? Hubungi admin di <a href="https://wa.me/6281234567890" target="_blank" class="underline hover:text-yellow-500">0812-3456-7890</a></span>
+            <span class="font-semibold text-sm sm:text-base">Butuh bantuan? Hubungi admin di <a href="https://wa.me/6281234567890" target="_blank" class="underline hover:text-[#21408E]">0812-3456-7890</a></span>
         </div>
     </div>
 </section>

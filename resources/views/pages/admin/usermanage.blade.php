@@ -1,6 +1,6 @@
-@section('title', 'Andalaswheel | Product Management')
+@section('title', 'Andalaswheel | User Management')
 @push('head')
-    <title>Andalaswheel || Product Management</title>
+    <title>Andalaswheel || User Management</title>
     <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
@@ -15,7 +15,7 @@
             {{-- Header with Glassdrop --}}
             <header class="sticky top-0 z-20 mb-8">
                 <div class="backdrop-blur-md bg-white/40 border border-white/30 shadow-lg rounded-2xl px-8 py-6 flex items-center justify-between">
-                    <h1 class="text-3xl font-bold text-blue-800 drop-shadow-lg">Produk Management</h1>
+                    <h1 class="text-3xl font-bold text-blue-800 drop-shadow-lg">User Management</h1>
                     {{-- Tambahkan tombol atau info lain di kanan header jika perlu --}}
                 </div>
             </header>
@@ -29,19 +29,13 @@
                             <i class="fas fa-search text-gray-400"></i>
                         </div>
                         <input type="text"
-                               placeholder="Cari Produk"
+                               placeholder="Cari User"
                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                     </div>
-
-                    {{-- Add Product Button --}}
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
-                        <i class="fas fa-plus"></i>
-                        Tambah Produk
-                    </button>
                 </div>
 
                 {{-- Product Table --}}
-                @include('components.table.admin.producttable')
+                @include('components.table.admin.usertable')
 
                 {{-- Pagination --}}
                 <div class="flex items-center justify-center mt-8 space-x-2">
