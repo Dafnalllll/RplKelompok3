@@ -1,8 +1,8 @@
 {{-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\admin\analyticssection\graphproduct.blade.php --}}
 
 @php
-    $labels = array_map(fn($p) => $p['name'], $products);
-    $stocks = array_map(fn($p) => $p['stock'], $products);
+    $labels = $products->map(fn($p) => $p->name)->toArray();
+    $stocks = $products->map(fn($p) => $p->stock)->toArray();
     $colors = ['#21408E', '#fbbf24', '#22c55e', '#ef4444', '#3b82f6', '#a855f7', '#fb7185', '#10b981'];
 @endphp
 

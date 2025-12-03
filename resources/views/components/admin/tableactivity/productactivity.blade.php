@@ -1,7 +1,7 @@
 {{-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\admin\tableactivity\productactivity.blade.php --}}
 <div class="bg-gradient-to-r from-blue-100 to-yellow-50 rounded-lg shadow-md p-6 flex flex-col min-h-[300px] justify-between">
     <div>
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Stok Produk Tersisa</h3>
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Stok Motor Tersisa</h3>
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
                 <thead>
@@ -25,7 +25,7 @@
                                 <div class="w-14 h-14 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-yellow-50 shadow">
                                     <i class="fas fa-motorcycle text-3xl text-blue-300"></i>
                                 </div>
-                                <div class="text-base text-gray-400 font-semibold">There Are No Product Yet</div>
+                                <div class="text-base text-gray-400 font-semibold">There Are No Motorcycle Yet</div>
                             </div>
                         </td>
                     </tr>
@@ -36,7 +36,7 @@
     </div>
     <div class="mt-auto text-right">
         <a href="{{ route('productmanage') }}" class="inline-flex items-center border border-blue-500 rounded-full px-5 py-2 text-blue-700 hover:bg-blue-50 hover:text-blue-900 font-medium text-sm transition-colors">
-            Manage Product
+            Manage Motorcycle
             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
