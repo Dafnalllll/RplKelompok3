@@ -38,6 +38,12 @@
                             <label class="block text-gray-700 font-semibold mb-2">Stok</label>
                             <input type="number" name="stock" value="{{ $product['stock'] }}" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400" placeholder="Stok">
                         </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">Tahun Keluaran</label>
+                            <input type="number" name="year" value="{{ $product['year'] ?? '' }}" min="1900" max="{{ date('Y') }}"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                                placeholder="Contoh: 2022">
+                        </div>
                     </div>
                     <div>
                         <div class="mb-4">

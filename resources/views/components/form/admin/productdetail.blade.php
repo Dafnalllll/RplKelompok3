@@ -39,6 +39,11 @@
                             <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold">
                                 {{ $product['category']['name'] ?? '-' }}
                             </span>
+                            @if(!empty($product['year']))
+                                <span class="inline-block px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-xs font-semibold ml-2">
+                                    Tahun: {{ $product['year'] }}
+                                </span>
+                            @endif
                         </div>
                         <div class="mb-2 text-gray-700">
                             <span class="font-semibold">Harga:</span>
