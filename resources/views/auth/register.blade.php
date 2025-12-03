@@ -215,19 +215,34 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
-                    title: 'Berhasil!',
-                    text: '{{ session('status') }}',
+                    title: '<span style="color:#21408E;font-weight:bold;">Berhasil!</span>',
+                    html: `<div style="font-size:1.1rem;color:#333;">
+                            {{ session('status') }}
+                        </div>`,
+                    background: 'linear-gradient(135deg, #e0e7ff 0%, #fffbe6 100%)',
                     showConfirmButton: false,
                     timer: 2000,
                     timerProgressBar: true,
                     iconHtml: `
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#21408E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10" fill="#21408E"/>
-                            <path d="M9 12l2 2l4 -4" stroke="#fff" stroke-width="2.5" fill="none"/>
-                        </svg>
+                        <div style="display:flex;align-items:center;justify-content:center;">
+                            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#21408E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" fill="#21408E"/>
+                                <path d="M9 12l2 2l4 -4" stroke="#FFD600" stroke-width="2.5" fill="none"/>
+                            </svg>
+                        </div>
                     `,
                     customClass: {
-                        icon: 'no-border'
+                        popup: 'shadow-xl rounded-2xl px-6 py-8',
+                        icon: 'no-border',
+                        title: 'text-2xl font-extrabold',
+                        htmlContainer: 'mt-2 mb-2'
+                    },
+                    didOpen: () => {
+                        const popup = Swal.getPopup();
+                        if (popup) {
+                            popup.style.border = '2px solid #21408E';
+                            popup.style.boxShadow = '0 8px 32px 0 rgba(33,64,142,0.15)';
+                        }
                     }
                 });
             });

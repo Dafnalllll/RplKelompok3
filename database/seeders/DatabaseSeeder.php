@@ -15,16 +15,29 @@ class DatabaseSeeder extends Seeder
     {
         // User biasa
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Dafnal',
+            'email' => 'dafnal12@gmail.com',
+            'password' => Hash::make('Dafqwe12'),
+            'role' => 'user',
+            'status' => 'Aktif', // tambahkan ini
         ]);
 
         // User admin
         User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('admin123'), // Ganti password sesuai kebutuhan
-            'role' => 'admin', // Pastikan kolom 'role' ada di tabel users
+            'name' => 'Zavi',
+            'email' => 'zavi23@gmail.com',
+            'password' => Hash::make('ZaviBE123'),
+            'role' => 'admin',
+            'status' => 'Aktif', // tambahkan ini
+        ]);
+
+        // User admin tambahan sesuai permintaan
+        User::factory()->create([
+            'name' => 'Andalas Wheels',
+            'email' => 'andalaswheels@gmail.com',
+            'password' => Hash::make('wheels12'),
+            'role' => 'admin',
+            'status' => 'Aktif', // tambahkan ini
         ]);
     }
 }

@@ -38,7 +38,7 @@
 
                 <!-- Session Status (hapus alert manual & komponen duplikat) -->
 
-                <form method="POST" action="{{ route('login') }}" class="pt-32">
+                <form method="POST" action="{{ route('login') }}" autocomplete="on" class="pt-32">
                     @csrf
 
                     <!-- Email Address -->
@@ -46,7 +46,14 @@
                     data-aos="fade-up"
                     data-aos-duration="1200">
                         <x-input-label for="email" :value="__('Email')" class="mb-2 font-[Carena]" />
-                        <x-text-input id="email" class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                        <x-text-input id="email"
+                            class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2"
+                            type="email"
+    name="email"
+    :value="old('email')"
+    required
+    autofocus
+    autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
@@ -55,7 +62,12 @@
                     data-aos="fade-up"
                     data-aos-duration="1300">
                         <x-input-label for="password" :value="__('Password')" class="mb-2 font-[Carena]" />
-                        <x-text-input id="password" class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2" type="password" name="password" required autocomplete="current-password" />
+                        <x-text-input id="password"
+    class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2"
+    type="password"
+    name="password"
+    required
+    autocomplete="current-password" />
                         <button type="button" onclick="togglePassword('password', 'eyePassword')" class="absolute right-4 top-9 group">
                             <span id="eyePassword" class="transition-colors duration-200 group-hover:text-blue-500">
                                 <!-- Lucide Eye Icon (default) -->
@@ -118,7 +130,7 @@
                 data-aos="fade-right"
                 data-aos-duration="900">
                 <x-input-label for="email" :value="__('Email')" class="mb-2 font-[Carena]" />
-                <x-text-input id="email" class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <x-text-input id="email_mobile" class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
             <!-- Password -->
@@ -168,19 +180,30 @@
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (session('status'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: '{{ session('status') }}',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true
-                });
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Berhasil!',
+                text: '{{ session('status') }}',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                iconHtml: `
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#21408E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" fill="#21408E"/>
+                        <path d="M9 12l2 2l4 -4" stroke="#fff" stroke-width="2.5" fill="none"/>
+                    </svg>
+                `,
+                customClass: {
+                    icon: 'no-border'
+                }
             });
-        </script>
-    @endif
+            setTimeout(function() {
+                window.location.href = "{{ url('/dashboard') }}";
+            }, 2000);
+        });
+    </script>
+@endif
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         AOS.init();

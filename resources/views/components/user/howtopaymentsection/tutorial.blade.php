@@ -1,10 +1,7 @@
 @php
     $steps = [
         [
-            'img' => [
-                'img/payment/motorcycle.webp',
-                'img/payment/personaldata.webp'
-            ],
+            'img' => 'img/payment/personaldata.webp',
             'title' => 'Pilih Motor & Isi Data',
             'desc' => 'Pilih motor yang ingin kamu sewa, lalu lengkapi data diri dan tanggal peminjaman pada form pemesanan.',
             'delay' => 100
@@ -48,15 +45,7 @@
             @foreach($steps as $step)
             <div data-aos="fade-up" data-aos-delay="{{ $step['delay'] }}" class="flex">
                 <div class="bg-yellow-50 rounded-xl shadow p-4 sm:p-6 flex flex-col items-center text-center w-full h-full transition-transform duration-500 hover:scale-100 sm:hover:scale-110 cursor-pointer">
-                    @if(is_array($step['img']))
-                        <div class="flex gap-2 mb-4">
-                            @foreach($step['img'] as $img)
-                                <img src="{{ asset($img) }}" alt="{{ $step['title'] }}" class="w-10 h-10 sm:w-14 sm:h-14 object-contain">
-                            @endforeach
-                        </div>
-                    @else
-                        <img src="{{ asset($step['img']) }}" alt="{{ $step['title'] }}" class="w-10 h-10 sm:w-14 sm:h-14 object-contain mb-4">
-                    @endif
+                    <img src="{{ asset($step['img']) }}" alt="{{ $step['title'] }}" class="w-10 h-10 sm:w-14 sm:h-14 object-contain mb-4">
                     <h3 class="font-bold text-[#21408E] text-base sm:text-lg mb-2">{{ $step['title'] }}</h3>
                     <p class="text-gray-700 text-sm sm:text-base">{!! $step['desc'] !!}</p>
                 </div>

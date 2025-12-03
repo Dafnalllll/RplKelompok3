@@ -1,6 +1,12 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\UserManageController;
+use App\Http\Controllers\Admin\ProductManageController;
+use App\Http\Controllers\Admin\OrderManageController;
+use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\UserHistoryController;
 use Illuminate\Support\Facades\Route;
 
 // Halaman utama
@@ -41,29 +47,34 @@ Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
     Route::get('/howtopayment', function () {
         return view('pages.user.howtopayment');
     })->name('payment');
+
+    Route::get('/history', function () {
+        return view('pages.user.history');
+    })->name('history');
 });
 
 // Admin Routes
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin', function () {
-        return view('pages.admin.dashboardadmin');
-    })->name('dashboardadmin');
+Route::middleware(['auth',  'role:admin'])->group(function () {
+    Route::get('/admin', [DashboardAdminController::class, 'index'])->name('dashboardadmin');
 
-    Route::get('/ordermanage', function () {
-        return view('pages.admin.ordermanage');
-    })->name('ordermanage');
+    // Order Management
+    Route::get('/ordermanage', [OrderManageController::class, 'index'])->name('ordermanage');
+    Route::post('/ordermanage/bulk-action', [OrderManageController::class, 'bulkAction'])->name('ordermanage.bulkAction');
 
-    Route::get('/productmanage', function () {
-        return view('pages.admin.productmanage');
-    })->name('productmanage');
+    // Product Management
+    Route::get('/productmanage', [ProductManageController::class, 'index'])->name('productmanage');
+    Route::get('/admin/product/search', [ProductManageController::class, 'search'])->name('admin.product.search');
+    Route::get('/productmanage/add', [ProductManageController::class, 'create'])->name('productmanage.add');
+    Route::post('/productmanage', [ProductManageController::class, 'store'])->name('productmanage.store');
+    Route::delete('/productmanage/{product}', [ProductManageController::class, 'destroy'])->name('productmanage.delete');
+    Route::put('/productmanage/{product}', [ProductManageController::class, 'update'])->name('productmanage.update');
 
-    Route::get('/usermanage', function () {
-        return view('pages.admin.usermanage');
-    })->name('usermanage');
+    // User Management
+    Route::get('/usermanage', [UserManageController::class, 'index'])->name('usermanage');
+    Route::post('/usermanage/bulk-action', [UserManageController::class, 'bulkAction'])->name('usermanage.bulkAction');
+    Route::get('/admin/user/search', [UserManageController::class, 'search'])->name('admin.user.search');
 
-    Route::get('/analytics', function () {
-        return view('pages.admin.analytics');
-    })->name('analytics');
+    Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics');
 });
 
 // Profile Routes

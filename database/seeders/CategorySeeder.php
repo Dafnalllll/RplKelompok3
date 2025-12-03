@@ -13,11 +13,12 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         DB::table('categories')->insert([
-            ['name' => 'matic'],
-            ['name' => 'matic premium'],
-            ['name' => 'sport matic'],
-            ['name' => 'hybrid'],
-            ['name' => 'bebek'],
+            ['name' => 'Matic'],
+            ['name' => 'Matic premium'],
+            ['name' => 'Sport matic'],
+            ['name' => 'Hybrid'],
+            ['name' => 'Bebek'],
+            ['name' => 'Manual'],
         ]);
     }
 }

@@ -1,5 +1,5 @@
-<!-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\tableactivity\useractivity.blade.php -->
-<div class="bg-white rounded-lg shadow-md p-6">
+{{-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\admin\tableactivity\useractivity.blade.php --}}
+<div class="bg-gradient-to-r from-blue-100 to-yellow-50 rounded-lg shadow-md p-6">
     <h3 class="text-lg font-semibold text-gray-800 mb-4">User Registration</h3>
 
     <div class="overflow-x-auto">
@@ -11,38 +11,31 @@
                     <th class="text-left py-3 px-4 font-semibold text-gray-800 uppercase">TANGGAL</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
-                    <td class="py-4 px-4 text-gray-800">Ryan</td>
-                    <td class="py-4 px-4 text-gray-800">Ryan@gmail.com</td>
-                    <td class="py-4 px-4 text-gray-800">20/09/2025</td>
-                </tr>
-                <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
-                    <td class="py-4 px-4 text-gray-800">Dafa</td>
-                    <td class="py-4 px-4 text-gray-800">Dafa@gmail.com</td>
-                    <td class="py-4 px-4 text-gray-800">21/09/2025</td>
-                </tr>
-                <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
-                    <td class="py-4 px-4 text-gray-800">Alpintan</td>
-                    <td class="py-4 px-4 text-gray-800">Pintan@gmail.com</td>
-                    <td class="py-4 px-4 text-gray-800">22/09/2025</td>
-                </tr>
-                <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
-                    <td class="py-4 px-4 text-gray-800">Zavi</td>
-                    <td class="py-4 px-4 text-gray-800">Zavi@gmail.com</td>
-                    <td class="py-4 px-4 text-gray-800">23/09/2025</td>
-                </tr>
-                <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
-                    <td class="py-4 px-4 text-gray-800">Rahmi</td>
-                    <td class="py-4 px-4 text-gray-800">Rahmi@gmail.com</td>
-                    <td class="py-4 px-4 text-gray-800">24/09/2025</td>
-                </tr>
+            <tbody class="border-gray-800">
+                @forelse($users as $user)
+                    <tr class="border-b border-gray-300 hover:bg-gray-50 transition-colors">
+                        <td class="py-4 px-4 text-gray-800">{{ $user->name }}</td>
+                        <td class="py-4 px-4 text-gray-800">{{ $user->email }}</td>
+                        <td class="py-4 px-4 text-gray-800">{{ $user->created_at->format('d/m/Y') }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="3" class="py-12">
+                            <div class="flex flex-col items-center justify-center gap-2">
+                                <div class="w-14 h-14 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-yellow-50 shadow">
+                                    <i class="fas fa-user-slash text-3xl text-blue-300"></i>
+                                </div>
+                                <div class="text-base text-gray-400 font-semibold">There Are No User Yet</div>
+                            </div>
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
 
     <div class="mt-6 text-right">
-        <a href="#" class="inline-flex items-center border border-blue-500 rounded-full px-5 py-2 text-blue-700 hover:bg-blue-50 hover:text-blue-900 font-medium text-sm transition-colors">
+        <a href="{{ route('usermanage') }}" class="inline-flex items-center border border-blue-500 rounded-full px-5 py-2 text-blue-700 hover:bg-blue-50 hover:text-blue-900 font-medium text-sm transition-colors">
             Manage User
             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

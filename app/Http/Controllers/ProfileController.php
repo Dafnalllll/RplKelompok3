@@ -24,17 +24,36 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $request->validate([
+            'nim' => 'required|digits_between:1,50',
+            'phone' => 'required|digits_between:1,20',
+            'ktm' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:10240',
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:5120', // 5MB
+        ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user = $request->user();
+
+        $profile = $user->profile ?: new \App\Models\UserProfile(['user_id' => $user->id]);
+        $profile->nim = $request->nim;
+        $profile->phone = $request->phone;
+
+        // Handle upload KTM
+        if ($request->hasFile('ktm')) {
+            $ktmPath = $request->file('ktm')->store('ktm', 'public');
+            $profile->ktm = $ktmPath;
         }
 
-        $request->user()->save();
+        // Handle upload Avatar
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('avatar', 'public');
+            $profile->avatar = $avatarPath;
+        }
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        $profile->save();
+
+        return back()->with('status', 'profile-updated');
     }
 
     /**

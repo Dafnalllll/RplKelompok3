@@ -200,9 +200,17 @@
                             <div class="text-yellow-600 font-extrabold text-xl mb-2 drop-shadow">Rp {{ number_format($product['price'], 0, ',', '.') }} <span class="font-normal text-sm">/ hari</span></div>
                             <div class="text-gray-500 text-sm mb-2">Stok: <span class="font-semibold">{{ $product['stock'] }}</span></div>
                             <p class="text-gray-600 text-sm mb-5">{{ $product['desc'] }}</p>
-                            <a href="{{ url('/order') }}" class="bg-yellow-400 hover:bg-yellow-500 text-[#21408E] font-bold px-7 py-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-300 inline-block">
-                                <i class="fa-solid fa-cart-plus mr-2"></i> Order Now
-                            </a>
+                            @php $user = Auth::user(); @endphp
+
+                            @if($user && $user->status === 'nonaktif')
+                                <button class="bg-gray-400 text-white px-6 py-2 rounded-lg cursor-not-allowed font-bold opacity-70" disabled>
+                                    <i class="fa-solid fa-ban mr-2"></i> Order Now
+                                </button>
+                            @else
+                                <a href="{{ url('/order') }}" class="bg-yellow-400 hover:bg-yellow-500 text-[#21408E] font-bold px-7 py-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-300 inline-block">
+                                    <i class="fa-solid fa-cart-plus mr-2"></i> Order Now
+                                </a>
+                            @endif
                         </div>
                         <div class="absolute bottom-4 right-4 z-0">
                             <i class="fa-solid fa-motorcycle text-blue-100 text-4xl opacity-20"></i>

@@ -1,4 +1,4 @@
-@section('title', 'Andalaswheel | Dashboard Admin')
+@section('title', 'Andalaswheel || Dashboard Admin')
 @push('head')
     <title>Andalaswheel || Dashboard Admin</title>
     <link rel="icon" type="image/webp" href="{{ asset('img/andalaswheels.webp') }}">
@@ -28,11 +28,8 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-600 text-sm font-medium mb-1">Total Order</p>
-                                <p class="text-3xl font-bold text-gray-800">50</p>
-                                <div class="flex items-center mt-2">
-                                    <i class="fas fa-arrow-down text-red-500 text-xs mr-1"></i>
-                                    <span class="text-red-500 text-sm">1.02%</span>
-                                </div>
+                                <p class="text-3xl font-bold text-gray-800">{{ $totalOrder }}</p>
+
                             </div>
                             <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                                 <i class="fas fa-clipboard-list text-purple-500 text-xl"></i>
@@ -45,14 +42,11 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-600 text-sm font-medium mb-1">Total Produk</p>
-                                <p class="text-3xl font-bold text-gray-800">70</p>
-                                <div class="flex items-center mt-2">
-                                    <i class="fas fa-arrow-down text-red-500 text-xs mr-1"></i>
-                                    <span class="text-red-500 text-sm">3.20%</span>
-                                </div>
+                                 <p class="text-3xl font-bold text-gray-800">{{ $totalProducts }}</p>
+
                             </div>
                             <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-box text-orange-500 text-xl"></i>
+                                <i class="fas fa-motorcycle text-orange-500 text-2xl"></i>
                             </div>
                         </div>
                     </div>
@@ -62,11 +56,7 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-600 text-sm font-medium mb-1">Total User</p>
-                                <p class="text-3xl font-bold text-gray-800">150</p>
-                                <div class="flex items-center mt-2">
-                                    <i class="fas fa-arrow-up text-green-500 text-xs mr-1"></i>
-                                    <span class="text-green-500 text-sm">2.45%</span>
-                                </div>
+                                <p class="text-3xl font-bold text-gray-800">{{ $totalUser }}</p>
                             </div>
                             <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                                 <i class="fas fa-users text-blue-500 text-xl"></i>
@@ -80,10 +70,7 @@
                             <div>
                                 <p class="text-gray-600 text-sm font-medium mb-1">Total Revenue</p>
                                 <p class="text-3xl font-bold text-gray-800">130</p>
-                                <div class="flex items-center mt-2">
-                                    <i class="fas fa-arrow-up text-green-500 text-xs mr-1"></i>
-                                    <span class="text-green-500 text-sm">2.45%</span>
-                                </div>
+
                             </div>
                             <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                                 <i class="fas fa-chart-line text-green-500 text-xl"></i>

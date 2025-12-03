@@ -1,17 +1,18 @@
 {{-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\admin\analyticssection\graphorder.blade.php --}}
 
 @php
-    $orderStatus = [
-        'Sudah Dibayar' => 120,
-        'Pending' => 35,
-        'Dibatalkan' => 15,
-    ];
+    // Ambil status dan jumlah order dari database
+    $orderStatus = \App\Models\Order::selectRaw('status, COUNT(*) as total')
+        ->groupBy('status')
+        ->pluck('total', 'status')
+        ->toArray();
+
     $labels = array_keys($orderStatus);
     $values = array_values($orderStatus);
-    $colors = ['#22c55e', '#fbbf24', '#ef4444'];
+    $colors = ['#22c55e', '#fbbf24', '#ef4444', '#3b82f6', '#a855f7', '#fb7185', '#10b981'];
 @endphp
 
-<div class=" p-8 max-w-5xl w-full mx-auto transition-all duration-300 hover:shadow-blue-200">
+<div class="p-8 max-w-5xl w-full mx-auto transition-all duration-300 hover:shadow-blue-200">
     <div class="flex items-center mb-8">
         <div class="bg-blue-100 rounded-full p-4 mr-6">
             <img src="{{ asset('img/analytics/status.webp') }}" alt="Status Icon" class="w-10 h-10 object-contain" />
@@ -31,44 +32,81 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const ctx = document.getElementById('orderPieChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: {!! json_encode($labels) !!},
-                datasets: [{
-                    data: {!! json_encode($values) !!},
-                    backgroundColor: {!! json_encode($colors) !!},
-                    borderColor: '#fff',
-                    borderWidth: 2,
-                    hoverOffset: 16
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'right',
-                        labels: {
-                            color: '#21408E',
-                            font: { size: 14, weight: 'bold' }
+        @if(count($labels) > 0)
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: {!! json_encode($labels) !!},
+                    datasets: [{
+                        data: {!! json_encode($values) !!},
+                        backgroundColor: {!! json_encode(array_slice($colors, 0, count($labels))) !!},
+                        borderColor: '#fff',
+                        borderWidth: 2,
+                        hoverOffset: 16
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right',
+                            labels: {
+                                color: '#21408E',
+                                font: { size: 14, weight: 'bold' }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#21408E',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#fbbf24',
+                            borderWidth: 1
                         }
                     },
-                    tooltip: {
-                        backgroundColor: '#21408E',
-                        titleColor: '#fff',
-                        bodyColor: '#fff',
-                        borderColor: '#fbbf24',
-                        borderWidth: 1
+                    animation: {
+                        animateScale: true,
+                        duration: 1200,
+                        easing: 'easeOutBounce'
                     }
-                },
-                animation: {
-                    animateScale: true,
-                    duration: 1200,
-                    easing: 'easeOutBounce'
                 }
-            }
-        });
+            });
+        @else
+            // Jika tidak ada data order
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Tidak Ada Data'],
+                    datasets: [{
+                        data: [1],
+                        backgroundColor: ['#d1d5db'], // abu-abu netral
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right',
+                            labels: {
+                                color: '#6b7280',
+                                font: { size: 14, weight: 'bold' }
+                            }
+                        },
+                        tooltip: {
+                            enabled: false
+                        }
+                    },
+                    animation: {
+                        animateScale: true,
+                        duration: 1200,
+                        easing: 'easeOutBounce'
+                    }
+                }
+            });
+        @endif
     });
 </script>
 @endpush

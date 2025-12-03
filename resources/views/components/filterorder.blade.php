@@ -7,29 +7,14 @@
             All
         </button>
 
-        <!-- Pending Button -->
+        <!-- Accepted Button -->
         <button class="px-6 py-2 bg-white text-gray-700 font-medium rounded-full border border-gray-300 hover:bg-gray-100 transition-colors">
-            Pending
+            Accepted
         </button>
 
-        <!-- Paid Button -->
-        <button class="px-6 py-2 bg-white text-gray-700 font-medium rounded-full border border-gray-300 hover:bg-gray-100   transition-colors">
-            Paid
-        </button>
-
-        <!-- Packed Button -->
+        <!-- Reject Button -->
         <button class="px-6 py-2 bg-white text-gray-700 font-medium rounded-full border border-gray-300 hover:bg-gray-100 transition-colors">
-            Packed
-        </button>
-
-        <!-- Shipped Button -->
-        <button class="px-6 py-2 bg-white text-gray-700 font-medium rounded-full border border-gray-300 hover:bg-gray-100 transition-colors">
-            Shipped
-        </button>
-
-        <!-- Delivered Button -->
-        <button class="px-6 py-2 bg-white text-gray-700 font-medium rounded-full border border-gray-300 hover:bg-gray-100 transition-colors">
-            Delivered
+            Reject
         </button>
     </div>
 </div>

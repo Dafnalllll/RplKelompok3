@@ -21,7 +21,61 @@
         @stack('head')
     </head>
     <body class="font-sans antialiased">
-        {{ $slot }}
+        {{-- Notifikasi akun nonaktif --}}
+        @include('components.notif.notifaccount')
+
+        {{ $slot ?? '' }}
+
+        @include('components.loading.loading')
+
+        <script>
+            window.skipLoading = false;
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.quick-scroll-link').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        // Bandingkan path tanpa trailing slash
+                        const current = window.location.pathname.replace(/\/$/, '');
+                        const target = new URL(this.href).pathname.replace(/\/$/, '');
+                        if (current === target) {
+                            e.preventDefault();
+                            window.skipLoading = true;
+                            // Pastikan overlay loading disembunyikan jika ada
+                            const loading = document.querySelector('.loading-overlay');
+                            if (loading) loading.style.display = 'none';
+                            // Scroll ke atas dengan smooth (paling kompatibel)
+                            setTimeout(function() {
+                                window.scrollTo({top:0,behavior:'smooth'});
+                            }, 10);
+                        }
+                    });
+                });
+            });
+            window.addEventListener('beforeunload', function (e) {
+                if (window.skipLoading) {
+                    window.skipLoading = false;
+                    return;
+                }
+                const loading = document.querySelector('.loading-overlay');
+                if (loading) loading.style.display = 'flex';
+            });
+        </script>
+
+        <script>
+            document.addEventListener('alpine:init', () => {
+                Alpine.store('userDetail', {
+                    open: false,
+                    user: {},
+                    show(user) {
+                        this.user = user;
+                        this.open = true;
+                    },
+                    close() {
+                        this.open = false;
+                        this.user = {};
+                    }
+                });
+            });
+        </script>
 
         @stack('scripts')
     </body>

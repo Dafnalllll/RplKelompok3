@@ -1,4 +1,4 @@
-@section('title', 'Andalaswheel | Analytics')
+@section('title', 'Andalaswheel || Analytics')
 @push('head')
     <title>Andalaswheel || Analytics</title>
     <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">

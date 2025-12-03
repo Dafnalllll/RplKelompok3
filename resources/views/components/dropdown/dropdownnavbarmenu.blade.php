@@ -2,10 +2,16 @@
 <div class="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl py-2 z-50 border border-blue-100 animate-fade-in">
     <div class="px-5 py-4 border-b border-blue-50 flex items-center gap-4">
         <div class="bg-blue-100 rounded-full p-3 flex items-center justify-center shadow">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <circle cx="12" cy="8" r="4" stroke="#21408E" stroke-width="2" fill="#e0e7ff"/>
-                <path d="M4 20c0-4 8-4 8-4s8 0 8 4" stroke="#21408E" stroke-width="2" fill="none"/>
-            </svg>
+            @if(Auth::user()->profile && Auth::user()->profile->avatar)
+                <img src="{{ asset('storage/' . Auth::user()->profile->avatar) }}"
+                     alt="Foto Profil"
+                     class="w-12 h-12 object-cover rounded-full border-2 border-blue-200 shadow">
+            @else
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <circle cx="12" cy="8" r="4" stroke="#21408E" stroke-width="2" fill="#e0e7ff"/>
+                    <path d="M4 20c0-4 8-4 8-4s8 0 8 4" stroke="#21408E" stroke-width="2" fill="none"/>
+                </svg>
+            @endif
         </div>
         <div>
             <div class="font-bold text-blue-900 text-base capitalize">{{ Auth::user()->name }}</div>
@@ -17,6 +23,13 @@
             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#21408E"/>
         </svg>
         <span>Profil</span>
+    </a>
+    <a href="{{ route('history') }}" class="flex items-center gap-3 px-5 py-3 text-blue-900 hover:bg-blue-50 transition font-medium text-base">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <circle cx="12" cy="12" r="10" stroke="#FFD600" stroke-width="2" fill="#fffbe6"/>
+            <path d="M12 7v5l4 2" stroke="#FFD600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span>History</span>
     </a>
     <div class="border-t border-blue-50 my-1"></div>
     <form method="POST" action="{{ route('logout') }}">

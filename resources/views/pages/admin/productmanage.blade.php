@@ -1,4 +1,4 @@
-@section('title', 'Andalaswheel | Product Management')
+@section('title', 'Andalaswheel || Product Management')
 @push('head')
     <title>Andalaswheel || Product Management</title>
     <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">
@@ -20,7 +20,30 @@
                 </div>
             </header>
 
-            <main class="p-6 min-h-screen">
+            <main class="p-6 min-h-screen relative">
+                <div
+                    x-data="{
+                        keyword: '',
+                        products: @js($products),
+                        page: 1,
+                        perPage: 5,
+                        get filtered() {
+                            if (!this.keyword) return this.products;
+                            return this.products.filter(p =>
+                                (p.name && p.name.toLowerCase().includes(this.keyword.toLowerCase())) ||
+                                (p.category?.name && p.category.name.toLowerCase().includes(this.keyword.toLowerCase()))
+                            );
+                        },
+                        get totalPages() {
+                            return Math.ceil(this.filtered.length / this.perPage) || 1;
+                        },
+                        get paginated() {
+                            const start = (this.page - 1) * this.perPage;
+                            return this.filtered.slice(start, start + this.perPage);
+                        }
+                    }"
+                    x-init="$watch('keyword', () => { page = 1 })"
+                >
                 {{-- Search and Add Button --}}
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
                     {{-- Search Bar --}}
@@ -29,41 +52,139 @@
                             <i class="fas fa-search text-gray-400"></i>
                         </div>
                         <input type="text"
-                               placeholder="Cari Produk"
-                               class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                placeholder="Cari Produk"
+                                x-model="keyword"
+                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                     </div>
 
                     {{-- Add Product Button --}}
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
+                    <a href="{{ route('productmanage.add') }}"
+                       class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2 hover:scale-105 transition-all duration-200 shadow-lg">
                         <i class="fas fa-plus"></i>
-                        Tambah Produk
-                    </button>
+                        Add Product
+                    </a>
                 </div>
 
                 {{-- Product Table --}}
-                @include('components.table.admin.producttable')
+                @include('components.table.admin.producttable', ['categories' => $categories])
 
-                {{-- Pagination --}}
-                <div class="flex items-center justify-center mt-8 space-x-2">
-                    {{-- Previous Button --}}
-                    <button class="w-10 h-10 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-50 transition-colors">
-                        <i class="fas fa-chevron-left text-gray-400 text-sm"></i>
-                    </button>
 
-                    {{-- Page Numbers --}}
-                    @for($page = 1; $page <= 7; $page++)
-                        @if($page == 1)
-                            <button class="w-10 h-10 bg-blue-600 text-white rounded-lg font-medium">{{ $page }}</button>
-                        @elseif($page <= 5)
-                            <button class="w-10 h-10 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-gray-600">{{ $page }}</button>
-                        @elseif($page == 6)
-                            <span class="w-10 h-10 flex items-center justify-center text-gray-400">...</span>
-                        @else
-                            <button class="w-10 h-10 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-gray-600">></button>
-                        @endif
-                    @endfor
-                </div>
             </main>
         </div>
     </div>
+    @if (session('status'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    text: '{{ session('status') }}',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 2200,
+                    timerProgressBar: true,
+                    toast: true,
+                    position: 'top',
+                    background: '#f0f6ff',
+                    color: '#21408E',
+                    customClass: {
+                        popup: 'shadow-2xl rounded-xl animate__animated animate__fadeInDown',
+                        title: 'font-bold text-lg',
+                        htmlContainer: 'text-base',
+                    },
+                    iconHtml: `
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#21408E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" fill="#21408E"/>
+                            <path d="M9 12l2 2l4 -4" stroke="#fff" stroke-width="2.5" fill="none"/>
+                        </svg>
+                    `,
+                });
+            });
+        </script>
+    @endif
+
+    @if (session('updated'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    text: '{{ session('updated') }}',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 2200,
+                    timerProgressBar: true,
+                    toast: true,
+                    position: 'top',
+                    background: '#e6f9f0',
+                    color: '#1a7f37',
+                    customClass: {
+                        popup: 'shadow-2xl rounded-xl animate__animated animate__fadeInDown',
+                        title: 'font-bold text-lg',
+                        htmlContainer: 'text-base',
+                    },
+                    iconHtml: `
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1a7f37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" fill="#1a7f37"/>
+                            <path d="M9 12l2 2l4 -4" stroke="#fff" stroke-width="2.5" fill="none"/>
+                        </svg>
+                    `,
+                });
+            });
+        </script>
+    @endif
+
+    @if (session('deleted'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    text: '{{ session('deleted') }}',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2200,
+                    timerProgressBar: true,
+                    toast: true,
+                    position: 'top',
+                    background: '#fff0f0',
+                    color: '#d32f2f',
+                    customClass: {
+                        popup: 'shadow-2xl rounded-xl animate__animated animate__fadeInDown',
+                        title: 'font-bold text-lg',
+                        htmlContainer: 'text-base',
+                    },
+                    iconHtml: `
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#d32f2f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" fill="#d32f2f"/>
+                            <path d="M9 12l2 2l4 -4" stroke="#fff" stroke-width="2.5" fill="none"/>
+                        </svg>
+                    `,
+                });
+            });
+        </script>
+    @endif
+
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1800,
+                    timerProgressBar: true,
+                    toast: true,
+                    position: 'top',
+                    background: '#f0f6ff',
+                    color: '#21408E',
+                    customClass: {
+                        popup: 'shadow-2xl rounded-xl animate__animated animate__fadeInDown',
+                        title: 'font-bold text-lg',
+                        htmlContainer: 'text-base',
+                    },
+                    iconHtml: `
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#21408E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" fill="#21408E"/>
+                            <path d="M9 12l2 2l4 -4" stroke="#fff" stroke-width="2.5" fill="none"/>
+                        </svg>
+                    `,
+                });
+            });
+        </script>
+    @endif
 </x-app-layout>
