@@ -31,9 +31,10 @@ class ProductManageController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
+            'year' => 'required|integer|min:1900|max:' . date('Y'),
             'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'stock' => 'required|integer',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
             'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
@@ -42,6 +43,7 @@ class ProductManageController extends Controller
         Product::create([
             'name' => $request->name,
             'category_id' => $request->category_id,
+            'year' => $request->year, // tambahkan ini
             'description' => $request->description,
             'price' => $request->price,
             'stock' => $request->stock,
@@ -64,13 +66,14 @@ class ProductManageController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
+            'year' => 'required|integer|min:1900|max:' . date('Y'),
             'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'stock' => 'required|integer',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
-        $data = $request->only(['name', 'category_id', 'description', 'price', 'stock']);
+        $data = $request->only(['name', 'category_id', 'year', 'description', 'price', 'stock']);
 
         if ($request->hasFile('image')) {
             if ($product->image && Storage::disk('public')->exists($product->image)) {
