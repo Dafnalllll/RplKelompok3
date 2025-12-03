@@ -1,7 +1,7 @@
 {{-- filepath: d:\Dafa Code\Rplkel3\resources\views\pages\admin\add\addproduct.blade.php --}}
-@section('title', 'Andalaswheel || Add Product')
+@section('title', 'Andalaswheel || Add Mototrcycle')
 @push('head')
-    <title>Andalaswheel || Add Product</title>
+    <title>Andalaswheel || Add Motorcycle</title>
     <link rel="icon" type="image/png" href="{{ asset('img/andalaswheels.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
@@ -49,17 +49,36 @@
                             </select>
                         </div>
                         <div>
+                            <label class="block font-semibold mb-1 text-blue-900">Tahun Keluaran</label>
+                            <input type="number" name="year" min="1900" max="{{ date('Y') }}" required
+                                class="w-full border border-blue-200 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400"
+                                placeholder="Contoh: 2022" value="{{ old('year') }}">
+                            @error('year')
+                                <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div>
                             <label class="block font-semibold mb-1 text-blue-900">Deskripsi</label>
                             <textarea name="description" rows="4" required class="w-full border border-blue-200 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 resize-y"></textarea>
                         </div>
                         <div class="flex flex-col sm:flex-row gap-4">
                             <div class="flex-1">
                                 <label class="block font-semibold mb-1 text-blue-900">Harga</label>
-                                <input type="number" name="price" min="0" required class="w-full border border-blue-200 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400">
+                                <input type="number" name="price" min="0" required
+                                    class="w-full border border-blue-200 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400"
+                                    value="{{ old('price') }}">
+                                @error('price')
+                                    <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="flex-1">
                                 <label class="block font-semibold mb-1 text-blue-900">Stok</label>
-                                <input type="number" name="stock" min="0" required class="w-full border border-blue-200 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400">
+                                <input type="number" name="stock" min="0" required
+                                    class="w-full border border-blue-200 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400"
+                                    value="{{ old('stock') }}">
+                                @error('stock')
+                                    <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <div>
@@ -142,5 +161,64 @@
         </div>
     </div>
 
-    
+
 </x-app-layout>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Helper untuk validasi angka dan range tahun
+    function showError(input, message) {
+        let errorSpan = input.parentNode.querySelector('.live-error');
+        if (!errorSpan) {
+            errorSpan = document.createElement('span');
+            errorSpan.className = 'live-error text-red-600 text-sm mt-1 block';
+            input.parentNode.appendChild(errorSpan);
+        }
+        errorSpan.textContent = message;
+    }
+    function clearError(input) {
+        let errorSpan = input.parentNode.querySelector('.live-error');
+        if (errorSpan) errorSpan.textContent = '';
+    }
+
+    // Tahun keluaran
+    const yearInput = document.querySelector('input[name="year"]');
+    yearInput.addEventListener('input', function() {
+        const val = yearInput.value;
+        const nowYear = new Date().getFullYear();
+        if (!val.match(/^\d+$/)) {
+            showError(yearInput, 'Tahun harus berupa angka.');
+        } else if (val < 1900 || val > nowYear) {
+            showError(yearInput, `Tahun harus antara 1900 dan ${nowYear}.`);
+        } else {
+            clearError(yearInput);
+        }
+    });
+
+    // Harga
+    const priceInput = document.querySelector('input[name="price"]');
+    priceInput.addEventListener('input', function() {
+        const val = priceInput.value;
+        if (!val.match(/^\d+$/)) {
+            showError(priceInput, 'Harga harus berupa angka.');
+        } else if (val < 0) {
+            showError(priceInput, 'Harga tidak boleh negatif.');
+        } else {
+            clearError(priceInput);
+        }
+    });
+
+    // Stok
+    const stockInput = document.querySelector('input[name="stock"]');
+    stockInput.addEventListener('input', function() {
+        const val = stockInput.value;
+        if (!val.match(/^\d+$/)) {
+            showError(stockInput, 'Stok harus berupa angka.');
+        } else if (val < 0) {
+            showError(stockInput, 'Stok tidak boleh negatif.');
+        } else {
+            clearError(stockInput);
+        }
+    });
+});
+</script>
