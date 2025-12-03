@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->string('name');
+            $table->integer('year')->nullable(); // Tahun keluaran motor
             $table->decimal('price', 15, 2);
             $table->integer('stock');
             $table->string('image')->nullable();
-            $table->text('description')->nullable(); // Tambahkan ini
+            $table->text('description')->nullable();
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
