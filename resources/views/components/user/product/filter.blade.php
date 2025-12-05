@@ -1,4 +1,4 @@
-{{-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\product\filter.blade.php --}}
+{{-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\user\product\filter.blade.php --}}
 <style>
     select {
         appearance: none !important;
@@ -7,8 +7,8 @@
         background-image: none !important;
     }
 </style>
-<div class="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-2xl shadow-lg mb-8 border border-blue-200">
-    <form method="GET" action="{{ url()->current() }}" class="flex flex-col md:flex-row gap-4 items-center">
+<div data-aos="fade-down" data-aos-delay="300" data-aos-duration="800" class="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-2xl shadow-lg mb-8 border border-blue-200">
+    <form method="GET" action="{{ url()->current() }}" class="flex flex-col md:flex-row gap-4 items-center md:justify-center">
         {{-- Filter Tahun --}}
         <div class="flex flex-col w-full md:w-1/4 relative">
             <label for="filter-year" class="mb-1 text-sm font-semibold text-blue-900 flex items-center gap-2">
@@ -17,7 +17,7 @@
             <div class="relative">
                 <select name="year" id="filter-year" class="border border-blue-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 transition w-full appearance-none pr-10">
                     <option value="">Semua Tahun</option>
-                    @foreach([2023,2022,2021,2020] as $th)
+                    @foreach([2024,2023,2022] as $th)
                         <option value="{{ $th }}" {{ request('year') == $th ? 'selected' : '' }}>{{ $th }}</option>
                     @endforeach
                 </select>
@@ -32,11 +32,11 @@
         {{-- Filter Tipe --}}
         <div class="flex flex-col w-full md:w-1/4 relative">
             <label for="filter-category" class="mb-1 text-sm font-semibold text-blue-900 flex items-center gap-2">
-                <i class="fa fa-motorcycle"></i> Tipe
+                <i class="fa fa-motorcycle"></i> Kategori
             </label>
             <div class="relative">
                 <select name="category" id="filter-category" class="border border-blue-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 transition w-full appearance-none pr-10">
-                    <option value="">Semua Tipe</option>
+                    <option value="">Semua Kategori</option>
                     @foreach(['Matic','Matic Premium','Sport Matic','Matic Hybrid','Bebek'] as $type)
                         <option value="{{ $type }}" {{ request('category') == $type ? 'selected' : '' }}>{{ $type }}</option>
                     @endforeach
@@ -71,10 +71,7 @@
 
         {{-- Tombol --}}
         <div class="flex gap-2 mt-4 md:mt-7">
-            <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold shadow hover:bg-blue-700 transition flex items-center gap-2">
-                <i class="fa fa-filter"></i> Filter
-            </button>
-            <button type="button" id="reset-filter" class="bg-red-600 text-white px-5 py-2 rounded-lg font-semibold shadow hover:bg-red-700 transition flex items-center gap-2">
+            <button type="button" id="reset-filter" class="bg-red-600 text-white px-5 py-2 rounded-lg font-semibold shadow hover:bg-red-700 transition flex items-center gap-2 hover:scale-105">
                 <i class="fa fa-undo"></i> Reset
             </button>
         </div>
@@ -99,16 +96,63 @@
     addArrowToggle('filter-category', 'arrow-category');
     addArrowToggle('filter-price', 'arrow-price');
 
-    // Reset filter
+    // Filter produk real-time
     document.addEventListener('DOMContentLoaded', function() {
         const resetFilter = document.getElementById('reset-filter');
+        const yearSelect = document.getElementById('filter-year');
+        const categorySelect = document.getElementById('filter-category');
+        const priceSelect = document.getElementById('filter-price');
+
+        function filterProducts() {
+            let year = yearSelect.value;
+            let category = categorySelect.value;
+            let price = priceSelect.value;
+            let found = false;
+
+            document.querySelectorAll('.product-card').forEach(function(card) {
+                let show = true;
+                let cardYear = card.getAttribute('data-year');
+                let cardCategory = card.getAttribute('data-category');
+                let cardPrice = parseInt(card.getAttribute('data-price'));
+
+                // Tahun (harus sama persis)
+                if (year && cardYear !== year) show = false;
+
+                // Kategori (case-insensitive)
+                if (category && cardCategory && cardCategory.toLowerCase() !== category.toLowerCase()) show = false;
+
+                // Harga
+                if (price) {
+                    if (price === '1' && cardPrice >= 60000) show = false;
+                    if (price === '2' && (cardPrice < 60000 || cardPrice > 100000)) show = false;
+                    if (price === '3' && cardPrice <= 100000) show = false;
+                }
+
+                card.style.display = show ? '' : 'none';
+                if (show) found = true;
+            });
+
+            const notFound = document.getElementById('not-found');
+            if (notFound) notFound.style.display = found ? 'none' : '';
+        }
+
+        // Reset filter tanpa refresh
         if (resetFilter) {
-            resetFilter.addEventListener('click', function() {
-                document.getElementById('filter-year').value = '';
-                document.getElementById('filter-category').value = '';
-                document.getElementById('filter-price').value = '';
-                this.closest('form').submit();
+            resetFilter.addEventListener('click', function(e) {
+                e.preventDefault();
+                yearSelect.value = '';
+                categorySelect.value = '';
+                priceSelect.value = '';
+                filterProducts();
             });
         }
+
+        // Jalankan filter saat filter berubah
+        [yearSelect, categorySelect, priceSelect].forEach(function(select) {
+            select.addEventListener('change', filterProducts);
+        });
+
+        // Jalankan filter pertama kali
+        filterProducts();
     });
 </script>
