@@ -99,25 +99,7 @@
                                         </div>
                                     </div>
 
-                                    {{-- Tambahkan di dalam <div class="rounded-xl ..."> setelah info motor dan detail --}}
-                                    <div class="flex flex-col items-end justify-between h-full ml-auto">
-                                        @if($order->status === 'Pending' && strtolower($order->payment) === 'transfer')
-                                            <button type="button"
-                                                onclick="openModal('{{ $order->id }}')"
-                                                class="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 transition flex items-center gap-2 mb-2">
-                                                <i class="fas fa-upload"></i>
-                                                Upload Bukti Pembayaran
-                                            </button>
-                                            @include('components.form.user.proof', ['order' => $order])
-                                        @endif
-                                        <div id="proofStatus-{{ $order->id }}" class="mt-2">
-                                            @if($order->payment_proof)
-                                                <a href="{{ asset('storage/' . $order->payment_proof) }}" target="_blank" class="text-blue-600 underline">Lihat Bukti</a>
-                                            @else
-                                                <span class="text-gray-400 text-xs">Belum ada bukti</span>
-                                            @endif
-                                        </div>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
