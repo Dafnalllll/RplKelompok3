@@ -37,7 +37,7 @@
             <div class="relative">
                 <select name="category" id="filter-category" class="border border-blue-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 transition w-full appearance-none pr-10">
                     <option value="">Semua Kategori</option>
-                    @foreach(['Matic','Matic Premium','Sport Matic','Matic Hybrid','Bebek'] as $type)
+                    @foreach(['Matic','Matic Premium','Sport Matic','Matic Hybrid','Bebek','Manual'] as $type)
                         <option value="{{ $type }}" {{ request('category') == $type ? 'selected' : '' }}>{{ $type }}</option>
                     @endforeach
                 </select>

@@ -10,10 +10,12 @@ class UserManageController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        $nonaktifCount = User::where('status', 'nonaktif')->count();
+        $users = User::with('profile')->get(); // <-- relasi profile dimuat di sini
 
-        return view('pages.admin.usermanage', compact('users', 'nonaktifCount'));
+        // mapping jika perlu
+        // $users = $users->map(function($user) { ... });
+
+        return view('pages.admin.usermanage', compact('users'));
     }
     public function bulkAction(Request $request)
     {

@@ -49,11 +49,11 @@
                         <x-text-input id="email"
                             class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2"
                             type="email"
-    name="email"
-    :value="old('email')"
-    required
-    autofocus
-    autocomplete="username" />
+                            name="email"
+                            :value="old('email')"
+                            required
+                            autofocus
+                            autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
@@ -63,11 +63,11 @@
                     data-aos-duration="1300">
                         <x-input-label for="password" :value="__('Password')" class="mb-2 font-[Carena]" />
                         <x-text-input id="password"
-    class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2"
-    type="password"
-    name="password"
-    required
-    autocomplete="current-password" />
+                            class="block w-full rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-400 px-4 py-2"
+                            type="password"
+                            name="password"
+                            required
+                            autocomplete="current-password" />
                         <button type="button" onclick="togglePassword('password', 'eyePassword')" class="absolute right-4 top-9 group">
                             <span id="eyePassword" class="transition-colors duration-200 group-hover:text-blue-500">
                                 <!-- Lucide Eye Icon (default) -->
@@ -185,14 +185,17 @@
             Swal.fire({
                 title: 'Berhasil!',
                 text: '{{ session('status') }}',
+                background: 'linear-gradient(135deg, #e0e7ff 0%, #fffbe6 100%)',
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
                 iconHtml: `
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#21408E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10" fill="#21408E"/>
-                        <path d="M9 12l2 2l4 -4" stroke="#fff" stroke-width="2.5" fill="none"/>
-                    </svg>
+                    <div style="display:flex;align-items:center;justify-content:center;">
+                            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#21408E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" fill="#21408E"/>
+                                <path d="M9 12l2 2l4 -4" stroke="#FFD600" stroke-width="2.5" fill="none"/>
+                            </svg>
+                    </div>
                 `,
                 customClass: {
                     icon: 'no-border'

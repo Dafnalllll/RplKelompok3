@@ -3,6 +3,7 @@
     <div x-data="{ open: false }" class="fixed z-50 flex justify-end w-full" style="top:100px; right:0;">
         <!-- Trigger: ikon warning setengah lingkaran -->
         <button @click="open = !open"
+            data-nonaktif-notif-btn
             class="bg-red-600/90 text-white w-20 h-20 flex items-center justify-center rounded-l-full rounded-r-none shadow-lg border border-red-700 focus:outline-none transition hover:bg-red-700"
             style="pointer-events:auto; border-right: none;">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="white" viewBox="0 0 24 24">

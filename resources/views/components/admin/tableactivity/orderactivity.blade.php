@@ -1,8 +1,8 @@
 {{-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\admin\tableactivity\orderactivity.blade.php --}}
-<div class="bg-gradient-to-r from-blue-100 to-yellow-50 rounded-lg shadow-md p-6">
+<div class="bg-gradient-to-r from-blue-100 to-yellow-50 rounded-lg shadow-md p-6 flex flex-col min-h-[400px]">
     <h3 class="text-lg font-semibold text-gray-800 mb-4">Order</h3>
 
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto flex-1">
         <table class="w-full text-sm">
             <thead>
                 <tr class="bg-gray-100 border-b border-gray-300">

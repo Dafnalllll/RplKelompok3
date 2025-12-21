@@ -1,18 +1,6 @@
 {{-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\table\admin\producttable.blade.php --}}
 
-<div
-    x-data="{
-        page: 1,
-        perPage: 5,
-        get totalPages() {
-            return Math.ceil(filtered.length / this.perPage) || 1;
-        },
-        get paginated() {
-            const start = (this.page - 1) * this.perPage;
-            return filtered.slice(start, start + this.perPage);
-        }
-    }"
-    class="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl p-8"
+<div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl p-8"
 >
     <h3 class="text-2xl font-bold text-blue-800 mb-6 flex items-center gap-2">
         <i class="fas fa-motorcycle text-blue-500"></i>
@@ -73,15 +61,15 @@
                             <td class="py-3 px-4">
                                 <div x-data="{ openDelete: false, openEdit: false }">
                                     <select name="actions[{{ $product->id }}]" x-ref="aksiSelect"
-                                        class="border border-blue-400 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-gray-700 bg-white shadow transition-all cursor-pointer"
+                                        class="border border-blue-400 rounded-lg px-8 py-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-gray-700 bg-white shadow transition-all cursor-pointer"
                                         @change="
                                             if($event.target.value === 'edit'){ openEdit = true; }
                                             if($event.target.value === 'delete'){ openDelete = true; }
                                         "
                                     >
                                         <option value="">Pilih Aksi</option>
-                                        <option value="edit">Edit</option>
-                                        <option value="delete">Delete</option>
+                                        <option value="edit" class="text-yellow-700">Edit</option>
+                                        <option value="delete" class="text-red-700">Delete</option>
                                     </select>
                                     {{-- Import modal delete --}}
                                     @include('components.form.admin.deleteproduct', [
@@ -138,4 +126,58 @@
             <i class="fas fa-chevron-right"></i>
         </button>
     </div>
+
+    {{-- Export CSV Button di ujung kanan --}}
+    <div class="flex justify-end mt-4">
+        <button
+            type="button"
+            onclick="exportProductTableToCSV()"
+            class="bg-gradient-to-r from-green-200 to-green-400 text-green-900 px-7 py-2.5 rounded-xl font-semibold shadow-lg flex items-center gap-3 transition-all duration-200 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-400"
+        >
+            <i class="fas fa-file-csv"></i>
+            Export CSV
+        </button>
+    </div>
+
+    <script>
+    function exportProductTableToCSV() {
+        let csv = 'Nama Produk,Kategori,Harga,Stok,Status\n';
+
+        // Fungsi format singkat Indonesia
+        function formatRupiahShort(num) {
+            num = parseInt(num, 10) || 0;
+            if (num >= 1_000_000_000_000) return (num / 1_000_000_000_000).toFixed((num % 1_000_000_000_000 === 0) ? 0 : 1).replace('.', ',') + 'T';
+            if (num >= 1_000_000_000) return (num / 1_000_000_000).toFixed((num % 1_000_000_000 === 0) ? 0 : 1).replace('.', ',') + 'M';
+            if (num >= 1_000_000) return (num / 1_000_000).toFixed((num % 1_000_000 === 0) ? 0 : 1).replace('.', ',') + 'Jt';
+            if (num >= 1_000) return (num / 1_000).toFixed((num % 1_000 === 0) ? 0 : 1).replace('.', ',') + 'Rb';
+            return num.toString();
+        }
+
+        document.querySelectorAll('tbody tr').forEach(row => {
+            const tds = row.querySelectorAll('td');
+            // Skip "Product Not Found" row
+            if (tds.length < 6) return;
+            let nama = tds[1]?.innerText.trim().replace(/\s+/g, ' ') || '';
+            let kategori = tds[2]?.innerText.trim().replace(/\s+/g, ' ') || '';
+            // Ambil angka saja dari harga dan format singkat
+            let hargaRaw = (tds[3]?.innerText.match(/[\d.,]+/) || [''])[0].replace(/\./g, '').replace(/,/g, '');
+            let harga = formatRupiahShort(hargaRaw);
+            let stok = tds[4]?.innerText.trim().replace(/\s+/g, ' ') || '';
+            let status = tds[5]?.innerText.trim().replace(/\s+/g, ' ') || '';
+            let data = [nama, kategori, harga, stok, status].map(v => /,/.test(v) ? `"${v}"` : v);
+            csv += data.join(',') + '\n';
+        });
+
+        // Download CSV
+        let blob = new Blob([csv], { type: 'text/csv' });
+        let url = window.URL.createObjectURL(blob);
+        let a = document.createElement('a');
+        a.href = url;
+        a.download = 'Data Produk.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    }
+    </script>
 </div>

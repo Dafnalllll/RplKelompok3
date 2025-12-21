@@ -45,10 +45,15 @@
         @include('components.user.aboutsection.desc')
     </div>
 
+    {{-- Vision Section --}}
+    @include('components.user.aboutsection.vision')
+
+    {{-- Mission Section --}}
+    @include('components.user.aboutsection.mission')
+
     {{-- Our Team Section --}}
-    <div id="ourteam-section" class="bg-white">
-        @include('components.user.aboutsection.ourteam')
-    </div>
+@include('components.user.aboutsection.ourteam')
+
 
     {{-- Footer --}}
     @include('components.footer')

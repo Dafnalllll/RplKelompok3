@@ -16,7 +16,7 @@
     <div class=" p-10 flex flex-col items-center max-w-md"
     data-aos="zoom-in"
     data-aos-duration="1000">
-        <img src="{{ asset('img/andalaswheels.png') }}" alt="Logo" class="w-24 h-24 mb-6">
+        <img src="{{ asset('img/andalaswheels.webp') }}" alt="Logo" class="w-24 h-24 mb-6">
         <h1 class="text-5xl font-bold text-[#21408E] mb-4" style="font-family: 'Montserrat', sans-serif;">404</h1>
         <h2 class="text-2xl font-semibold font-[Carena] text-gray-700 mb-2">Halaman Tidak Ditemukan</h2>
         <p class="text-gray-500 mb-6 font-[Sans] text-center">Maaf, halaman yang kamu cari tidak tersedia.<br>Kembali ke beranda untuk melanjutkan perjalananmu!</p>
@@ -38,6 +38,6 @@
         AOS.init();
     });
     </script>
-</body>                 
+</body>
 </html>
 

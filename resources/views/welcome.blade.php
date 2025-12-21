@@ -49,6 +49,34 @@
         </div>
     </div>
 
+    @if(session('status'))
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('status') }}',
+            background: 'linear-gradient(135deg, #e0e7ff 0%, #fffbe6 100%)',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            iconHtml: `
+                <div style="display:flex;align-items:center;justify-content:center;">
+                            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#21408E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" fill="#21408E"/>
+                                <path d="M9 12l2 2l4 -4" stroke="#FFD600" stroke-width="2.5" fill="none"/>
+                            </svg>
+                </div>
+            `,
+            customClass: {
+                icon: 'no-border'
+            }
+        });
+    });
+    </script>
+    @endif
+
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {

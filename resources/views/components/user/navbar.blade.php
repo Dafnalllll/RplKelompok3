@@ -74,6 +74,12 @@
                     <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2" fill="white"/>
                     <path d="M4 20c0-4 8-4 8-4s8 0 8 4" stroke="white" stroke-width="2" fill="none"/>
                 </svg>
+                @if(isset($notifOrderCount) && $notifOrderCount > 0)
+                    <span class="absolute -top-1 -right-1 flex items-center justify-center bg-blue-600 text-white text-xs font-bold rounded-full border-2 border-white w-6 h-6 shadow"
+                        style="font-size: 1rem;">
+                        {{ $notifOrderCount }}
+                    </span>
+                @endif
             </button>
             <!-- Dropdown -->
             <div id="user-dropdown" class="hidden">

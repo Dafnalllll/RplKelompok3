@@ -24,15 +24,18 @@
                 <div
                     x-data="{
                         keyword: '',
+                        category: '',
+                        status: '',
                         products: @js($products),
                         page: 1,
                         perPage: 5,
                         get filtered() {
-                            if (!this.keyword) return this.products;
-                            return this.products.filter(p =>
-                                (p.name && p.name.toLowerCase().includes(this.keyword.toLowerCase())) ||
-                                (p.category?.name && p.category.name.toLowerCase().includes(this.keyword.toLowerCase()))
-                            );
+                            return this.products.filter(p => {
+                                const matchName = !this.keyword || (p.name && p.name.toLowerCase().includes(this.keyword.toLowerCase()));
+                                const matchCategory = !this.category || (p.category && p.category.name === this.category);
+                                const matchStatus = !this.status || p.status === this.status;
+                                return matchStatus && matchCategory && matchName;
+                            });
                         },
                         get totalPages() {
                             return Math.ceil(this.filtered.length / this.perPage) || 1;
@@ -42,7 +45,7 @@
                             return this.filtered.slice(start, start + this.perPage);
                         }
                     }"
-                    x-init="$watch('keyword', () => { page = 1 })"
+                    x-init="$watch('keyword', () => { page = 1 }); $watch('category', () => { page = 1 }); $watch('status', () => { page = 1 })"
                 >
                 {{-- Search and Add Button --}}
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
@@ -54,21 +57,68 @@
                         <input type="text"
                                 placeholder="Cari Produk"
                                 x-model="keyword"
-                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                class="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <button
+                                type="button"
+                                x-show="keyword"
+                                @click="keyword = ''"
+                                class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500"
+                        >
+                                <i class="fas fa-times-circle"></i>
+                        </button>
                     </div>
 
                     {{-- Add Product Button --}}
                     <a href="{{ route('productmanage.add') }}"
-                       class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2 hover:scale-105 transition-all duration-200 shadow-lg">
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2 hover:scale-105 transition-all duration-200 shadow-lg">
                         <i class="fas fa-plus"></i>
                         Add Product
                     </a>
                 </div>
 
+                {{-- Filter Bar --}}
+                <div class="w-full flex flex-col md:flex-row items-center justify-start gap-4 mb-6">
+                    <div class="w-full flex gap-4 bg-white/90 backdrop-blur-md rounded-xl shadow-lg px-6 py-4 border border-blue-200 items-center">
+                        <div class="flex items-center gap-2 mr-2">
+                            <i class="fas fa-filter text-blue-600 text-lg"></i>
+                            <span class="font-semibold text-blue-800 text-base">Filter</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <label class="text-blue-700 font-medium" for="category-filter">
+                                <i class="fas fa-tags mr-1"></i>Kategori:
+                            </label>
+                            <select id="category-filter" x-model="category"
+                                class="px-7 py-2 rounded-full border border-blue-200 bg-blue-50 text-blue-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition hover:bg-blue-100 hover:border-blue-400">
+                                <option value="">Semua</option>
+                                @foreach($categories as $cat)
+                                    <option value="{{ $cat->name }}">{{ $cat->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <label class="text-blue-700 font-medium" for="status-filter">
+                                <i class="fas fa-toggle-on mr-1"></i>Status:
+                            </label>
+                            <select id="status-filter" x-model="status"
+                                class="px-10 py-2 rounded-full border border-blue-200 bg-blue-50 text-blue-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition hover:bg-blue-100 hover:border-blue-400">
+                                <option value="">Semua</option>
+                                <option value="In Stock">In Stock</option>
+                                <option value="Out Stock">Out Stock</option>
+                            </select>
+                        </div>
+                        <button
+                            type="button"
+                            @click="keyword = ''; category = ''; status = ''"
+                            class="ml-auto px-6 py-2 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 text-white font-semibold shadow hover:scale-105 transition flex items-center gap-2"
+                        >
+                            <i class="fas fa-undo"></i>
+                            Reset
+                        </button>
+                    </div>
+                </div>
+
                 {{-- Product Table --}}
                 @include('components.table.admin.producttable', ['categories' => $categories])
-
-
             </main>
         </div>
     </div>

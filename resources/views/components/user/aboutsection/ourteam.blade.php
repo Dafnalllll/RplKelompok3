@@ -1,10 +1,6 @@
-<section class="min-h-screen relative flex flex-col items-center bg-gray-900 overflow-hidden pb-16">
+<section class="min-h-screen relative flex flex-col items-center  pb-16">
     {{-- Single Background Image --}}
     <div class="absolute inset-0 w-full h-full z-0">
-        <img src="{{ asset('img/ourteam.webp') }}"
-             alt="Our Team Background"
-             class="w-full h-full object-cover object-center" />
-        <div class="absolute inset-0 bg-gray-900 bg-opacity-60"></div>
     </div>
     {{-- Decorative Dot --}}
     <div class="absolute top-24 left-10 w-3 h-3 bg-yellow-400 rounded-full opacity-80 z-10"></div>
@@ -32,7 +28,7 @@
                         'image' => 'img/ourteam/dafa.png',
                         'instagram' => 'https://www.instagram.com/daf_nal/',
                         'linkedin' => 'https://www.linkedin.com/in/daffa-naldi-935b55341/',
-                        'github' => 'https://github.com/rizkidafanaldi',
+                        'github' => 'https://github.com/Dafnalllll',
                         'delay' => '100'
                     ],
                     [

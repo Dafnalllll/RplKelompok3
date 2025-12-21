@@ -14,7 +14,20 @@ class ProductManageController extends Controller
     public function index()
     {
         $products = Product::with('category')->latest()->get();
-        $categories = Category::all();
+
+        // Tambahkan status secara manual untuk kebutuhan frontend
+        $products = $products->map(function($product) {
+            $product->status = $product->stock > 0 ? 'In Stock' : 'Out Stock';
+            return $product;
+        });
+
+        $categories = Category::all()->map(function($cat) {
+            return (object)[
+                'id' => $cat->id,
+                'name' => $cat->name,
+            ];
+        });
+
         return view('pages.admin.productmanage', compact('products', 'categories'));
     }
 
@@ -31,7 +44,7 @@ class ProductManageController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
-            'year' => 'required|integer|min:1900|max:' . date('Y'),
+            'year' => 'required|integer|min:1900|max:' . date('Y'), // tambah validasi year
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
@@ -43,7 +56,7 @@ class ProductManageController extends Controller
         Product::create([
             'name' => $request->name,
             'category_id' => $request->category_id,
-            'year' => $request->year, // tambahkan ini
+            'year' => $request->year, // tambah field year
             'description' => $request->description,
             'price' => $request->price,
             'stock' => $request->stock,
@@ -66,14 +79,14 @@ class ProductManageController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
-            'year' => 'required|integer|min:1900|max:' . date('Y'),
+            'year' => 'required|integer|min:1900|max:' . date('Y'), // tambah validasi year
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
-        $data = $request->only(['name', 'category_id', 'year', 'description', 'price', 'stock']);
+        $data = $request->only(['name', 'category_id', 'year', 'description', 'price', 'stock']); // tambah year
 
         if ($request->hasFile('image')) {
             if ($product->image && Storage::disk('public')->exists($product->image)) {
@@ -84,7 +97,6 @@ class ProductManageController extends Controller
 
         $product->update($data);
 
-        // Alert sukses edit
         return redirect()->route('productmanage')->with('updated', 'Produk berhasil diupdate!');
     }
 

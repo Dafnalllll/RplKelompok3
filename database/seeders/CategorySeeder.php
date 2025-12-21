@@ -14,8 +14,8 @@ class CategorySeeder extends Seeder
     {
         DB::table('categories')->insert([
             ['name' => 'Matic'],
-            ['name' => 'Matic premium'],
-            ['name' => 'Sport matic'],
+            ['name' => 'Matic Premium'],
+            ['name' => 'Sport Matic'],
             ['name' => 'Hybrid'],
             ['name' => 'Bebek'],
             ['name' => 'Manual'],

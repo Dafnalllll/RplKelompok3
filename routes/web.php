@@ -2,11 +2,15 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserManageController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\ProductManageController;
 use App\Http\Controllers\Admin\OrderManageController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\AnalyticsController;
 use App\Http\Controllers\UserHistoryController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuestionAnswerController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 // Halaman utama
@@ -28,9 +32,10 @@ Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
         return view('pages.user.motorcycle');
     })->name('motorcycle');
 
-    Route::get('/product', function () {
-        return view('pages.user.product');
-    })->name('product');
+    //Product
+    Route::get('/product', [ProductController::class, 'index'])->name('user.product');
+    Route::get('/product/rent/{id}', [ProductController::class, 'show']);
+    Route::post('/order', [UserHistoryController::class, 'store'])->name('order.store');
 
     Route::get('/ourteam', function () {
         return view('pages.user.ourteam');
@@ -40,17 +45,14 @@ Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
         return view('pages.user.contact');
     })->name('contact');
 
-    Route::get('/faq', function () {
-        return view('pages.user.faq');
-    })->name('faq');
+    Route::get('/faq', [QuestionController::class, 'question'])->name('faq');
 
     Route::get('/howtopayment', function () {
         return view('pages.user.howtopayment');
     })->name('payment');
 
-    Route::get('/history', function () {
-        return view('pages.user.history');
-    })->name('history');
+    Route::get('/history', [UserHistoryController::class, 'index'])->name('history');
+
 });
 
 // Admin Routes
@@ -69,10 +71,14 @@ Route::middleware(['auth',  'role:admin'])->group(function () {
     Route::delete('/productmanage/{product}', [ProductManageController::class, 'destroy'])->name('productmanage.delete');
     Route::put('/productmanage/{product}', [ProductManageController::class, 'update'])->name('productmanage.update');
 
+
     // User Management
     Route::get('/usermanage', [UserManageController::class, 'index'])->name('usermanage');
     Route::post('/usermanage/bulk-action', [UserManageController::class, 'bulkAction'])->name('usermanage.bulkAction');
     Route::get('/admin/user/search', [UserManageController::class, 'search'])->name('admin.user.search');
+
+    // FAQ Management
+    Route::get('/questionmanage', [QuestionController::class, 'index'])->name('questionmanage');
 
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics');
 });
@@ -83,6 +89,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Question Store
+Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
+Route::post('/questions/{question}/answer', [QuestionAnswerController::class, 'store'])->name('questions.answer');
+
+Route::middleware(['auth', 'role:user,admin'])->group(function () {
+    Route::get('/order/{order}/upload-proof', [OrderController::class, 'showUploadProofForm'])->name('order.upload-proof');
+    Route::post('/order/{order}/upload-proof', [OrderController::class, 'uploadProof'])->name('order.upload-proof.submit');
+});
+
 
 // Fallback
 Route::fallback(function () {

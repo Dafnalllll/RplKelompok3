@@ -8,7 +8,7 @@
         <title>@yield('title')</title>
 
         <!-- Favicon -->
-        <link rel="icon" type="image/webp" href="{{ asset('img/andalaswheels.webp') }}">
+        <link rel="icon" type="img/webp" href="{{ asset('img/andalaswheels.webp') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -78,6 +78,10 @@
         </script>
 
         @stack('scripts')
+        <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+        <script>
+          AOS.init();
+        </script>
     </body>
 </html>
 

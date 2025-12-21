@@ -40,7 +40,7 @@
                                 onclick="document.getElementById('faq-table-section').scrollIntoView({ behavior: 'smooth' });"
                                 class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
                             >
-                                Ask Us
+                                Tanya Kami
                             </button>
                         </div>
                     </div>

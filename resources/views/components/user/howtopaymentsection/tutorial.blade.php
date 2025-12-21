@@ -37,7 +37,7 @@
          data-aos="fade-up"
          data-aos-duration="1200"
          data-aos-delay="200">
-        <h2 class="text-2xl sm:text-3xl font-bold text-[#21408E] mb-8 sm:mb-10 flex items-center gap-2 justify-center">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8 sm:mb-10 flex items-center gap-2 justify-center">
             <i class="fa-solid fa-money-check-dollar text-yellow-400 text-xl sm:text-2xl"></i>
             Langkah-langkah Pembayaran
         </h2>

@@ -7,6 +7,11 @@
             All
         </button>
 
+        <!-- Pending Button -->
+        <button class="px-6 py-2 bg-white text-gray-700 font-medium rounded-full border border-gray-300 hover:bg-gray-100 transition-colors">
+            Pending
+        </button>
+
         <!-- Accepted Button -->
         <button class="px-6 py-2 bg-white text-gray-700 font-medium rounded-full border border-gray-300 hover:bg-gray-100 transition-colors">
             Accepted

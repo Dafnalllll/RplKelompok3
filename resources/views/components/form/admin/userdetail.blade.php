@@ -1,5 +1,5 @@
 {{-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\form\admin\userdetail.blade.php --}}
-<div x-data="{ open: false }"
+<div x-data="{ open: false, openFull: false }"
      x-init="window.addEventListener('open-user-detail-{{ $user->id }}', () => { open = true })"
      class="inline">
     <!-- Tombol Detail -->
@@ -10,7 +10,7 @@
         Detail
     </button>
 
-    <!-- Modal Detail User (ukuran lebih besar dan lebar) -->
+    <!-- Modal Detail User -->
     <div x-show="open"
         class="fixed inset-0 z-50 flex items-center justify-center -mt-12"
         x-cloak>
@@ -25,8 +25,19 @@
                 <div class="bg-blue-100 rounded-full p-1">
                     @if(!empty($user->profile) && !empty($user->profile->avatar))
                         <img src="{{ asset('storage/' . $user->profile->avatar) }}"
-                             alt="Avatar"
-                             class="w-28 h-28 rounded-full object-cover border-4 border-blue-200 shadow-lg bg-white">
+                            alt="Avatar"
+                            class="w-28 h-28 rounded-full object-cover border-4 border-blue-200 shadow-lg bg-white cursor-pointer"
+                            @click="openFull = true">
+                        <!-- Modal Full Image -->
+                        <div x-show="openFull" class="fixed inset-0 z-60 flex items-center justify-center bg-black/80" x-cloak>
+                            <img src="{{ asset('storage/' . $user->profile->avatar) }}"
+                                alt="Avatar Full"
+                                class="max-w-full max-h-[90vh] rounded-xl shadow-2xl border-4 border-white">
+                            <button type="button" @click="openFull = false"
+                                class="absolute top-8 right-8 text-white text-4xl hover:text-red-400 transition">
+                                <i class="fas fa-times-circle"></i>
+                            </button>
+                        </div>
                     @else
                         <i class="fas fa-user-circle text-blue-500 text-7xl"></i>
                     @endif
@@ -54,6 +65,10 @@
                 <div>
                     <label class="block text-gray-700 font-semibold mb-2 text-lg">Nomor Telepon</label>
                     <div class="bg-gray-100 rounded-lg px-6 py-3 text-gray-800 text-lg">{{ $user->profile->phone ?? '-' }}</div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2 text-lg">Alamat</label>
+                    <div class="bg-gray-100 rounded-lg px-6 py-3 text-gray-800 text-lg">{{ $user->profile->alamat ?? '-' }}</div>
                 </div>
                 <div class="md:col-span-2">
                     <label class="block text-gray-700 font-semibold mb-2 text-lg">File KTM</label>

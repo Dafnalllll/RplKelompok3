@@ -1,91 +1,36 @@
-{{-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\table\user\ordertable.blade.php --}}
+{{-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\table\user\motorcycletable.blade.php --}}
+
 @php
-    $products = [
-        [
-            'name' => 'Honda Beat',
-            'image' => 'img/motor/hondabeat.webp',
-            'type' => 'Matic',
-            'category' => 'Matic',
-            'year' => 2022,
-            'price' => 60000,
-            'desc' => 'Irit, ringan, cocok untuk harian dan mahasiswa.',
-            'stock' => 8,
-        ],
-        [
-            'name' => 'Yamaha Mio',
-            'image' => 'img/motor/yamahamio.webp',
-            'type' => 'Matic',
-            'category' => 'Matic',
-            'year' => 2021,
-            'price' => 55000,
-            'desc' => 'Desain stylish, nyaman untuk perjalanan jauh.',
-            'stock' => 5,
-        ],
-        [
-            'name' => 'Honda Vario 125',
-            'image' => 'img/motor/hondavario125.webp',
-            'type' => 'Matic',
-            'category' => 'Matic',
-            'year' => 2023,
-            'price' => 70000,
-            'desc' => 'Performa tinggi, bagasi luas, cocok untuk keluarga.',
-            'stock' => 3,
-        ],
-        [
-            'name' => 'Yamaha NMAX',
-            'image' => 'img/motor/yamahanmax.webp',
-            'type' => 'Matic',
-            'category' => 'Matic Premium',
-            'year' => 2022,
-            'price' => 120000,
-            'desc' => 'Matic premium, nyaman dan bertenaga.',
-            'stock' => 2,
-        ],
-        [
-            'name' => 'Honda Supra X 125',
-            'image' => 'img/motor/hondasuprax125.webp',
-            'type' => 'Bebek',
-            'category' => 'Bebek',
-            'year' => 2020,
-            'price' => 50000,
-            'desc' => 'Motor bebek legendaris, irit dan bandel.',
-            'stock' => 6,
-        ],
-        [
-            'name' => 'Honda PCX',
-            'image' => 'img/motor/hondapcx.webp',
-            'type' => 'Matic',
-            'category' => 'Matic Premium',
-            'year' => 2023,
-            'price' => 130000,
-            'desc' => 'Nyaman dan elegan untuk perjalanan jauh.',
-            'stock' => 4,
-        ],
-    ];
+    // Ambil 6 produk terbaru dari database
+    $products = \App\Models\Product::orderBy('created_at', 'desc')->take(3)->get();
 @endphp
 
+@if($products->isEmpty())
+    <div class="text-center text-gray-400 text-xl font-semibold py-16">
+        <i class="fa fa-motorcycle text-5xl mb-4"></i>
+        <div>Belum Ada Motor</div>
+    </div>
+@else
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    @foreach($products as $i => $product)
+    @foreach($products as $product)
     <div class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col items-center p-7 relative group overflow-hidden">
         {{-- Decorative gradient circle --}}
         <div class="absolute -top-10 -left-10 w-32 h-32 bg-gradient-to-br from-yellow-200 via-yellow-100 to-white rounded-full opacity-40 z-0"></div>
         <div class="w-full flex justify-center mb-4 z-10">
-            <img src="{{ asset($product['image']) }}" alt="{{ $product['name'] }}" class="w-36 h-28 object-contain  group-hover:scale-110 transition-transform duration-300 bg-white/80 p-2">
+            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-36 h-28 object-contain group-hover:scale-110 transition-transform duration-300 bg-white/80 p-2">
         </div>
         <div class="w-full text-center z-10">
-            <h3 class="font-extrabold text-2xl text-[#21408E] mb-1 tracking-tight">{{ $product['name'] }}</h3>
+            <h3 class="font-extrabold text-2xl text-[#21408E] mb-1 tracking-tight">{{ $product->name }}</h3>
             <div class="flex justify-center gap-2 text-xs text-gray-500 mb-2">
-                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-semibold shadow-sm">{{ $product['category'] }}</span>
-                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-semibold shadow-sm">{{ $product['type'] }}</span>
-                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full font-semibold shadow-sm">{{ $product['year'] }}</span>
+                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-semibold shadow-sm">{{ $product->category->name ?? '-' }}</span>
+                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full font-semibold shadow-sm">{{ $product->year }}</span>
             </div>
-            <div class="text-yellow-600 font-extrabold text-xl mb-2 drop-shadow">Rp {{ number_format($product['price'], 0, ',', '.') }} <span class="font-normal text-sm">/ hari</span></div>
-            <div class="text-gray-500 text-sm mb-2">Stok: <span class="font-semibold">{{ $product['stock'] }}</span></div>
-            <p class="text-gray-600 text-sm mb-5">{{ $product['desc'] }}</p>
+            <div class="text-yellow-600 font-extrabold text-xl mb-2 drop-shadow">Rp {{ number_format($product->price, 0, ',', '.') }} <span class="font-normal text-sm">/ hari</span></div>
+            <div class="text-gray-500 text-sm mb-2">Stok: <span class="font-semibold">{{ $product->stock }}</span></div>
             <div class="flex flex-col gap-2">
-                <button class="bg-yellow-400 hover:bg-yellow-500 text-[#21408E] font-bold px-7 py-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-300">
-                    <i class="fa-solid fa-cart-plus mr-2"></i> Pilih Motor
-                </button>
+                <a href="{{ url('/product/rent/' . $product->id) }}" class="bg-yellow-400 hover:bg-yellow-500 text-[#21408E] font-bold px-7 py-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-300">
+                    <i class="fa-solid fa-cart-plus mr-2"></i> Rent Now
+                </a>
             </div>
         </div>
         <div class="absolute bottom-4 right-4 z-0">
@@ -102,5 +47,6 @@
         <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
     </a>
 </div>
+@endif
 
 

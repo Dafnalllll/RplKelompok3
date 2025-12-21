@@ -1,18 +1,5 @@
 {{-- filepath: d:\Dafa Code\Rplkel3\resources\views\components\table\admin\usertable.blade.php --}}
-
-<div
-    x-data="{
-        page: 1,
-        perPage: 5,
-        get totalPages() {
-            return Math.ceil(filtered.length / this.perPage) || 1;
-        },
-        get paginated() {
-            const start = (this.page - 1) * this.perPage;
-            return filtered.slice(start, start + this.perPage);
-        }
-    }"
-    class="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl p-8"
+<div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl p-8"
 >
     <h3 class="text-2xl font-bold text-blue-800 mb-6 flex items-center gap-2">
         <i class="fas fa-users-cog text-blue-500"></i>
@@ -64,7 +51,7 @@
                                 </td>
                                 <td class="py-3 px-4">
                                     @if($user->email !== 'andalaswheels@gmail.com' && $user->email !== 'dafnal12@gmail.com' && $user->email !== 'zavi23@gmail.com')
-                                        <select name="actions[{{ $user->id }}]" class="border border-blue-400 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-gray-700 bg-white shadow transition-all cursor-pointer">
+                                        <select name="actions[{{ $user->id }}]" class="border border-blue-400 rounded-lg px-7 py-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-gray-700 bg-white shadow transition-all cursor-pointer">
                                             <option value="">Pilih</option>
                                             @if(trim(strtolower($user->status)) === 'nonaktif')
                                                 <option value="aktif" class="text-green-700">Aktifkan</option>
@@ -125,7 +112,17 @@
             </button>
         </div>
 
-        <div class="flex justify-end mt-6">
+        <div class="flex justify-end mt-6 gap-3">
+            {{-- Export CSV Button --}}
+            <button
+                type="button"
+                onclick="exportUserTableToCSV()"
+                class="bg-gradient-to-r from-green-200 to-green-400 text-green-900 px-7 py-2.5 rounded-xl font-semibold shadow-lg flex items-center gap-3 transition-all duration-200 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-400"
+            >
+                <i class="fas fa-file-csv"></i>
+                Export CSV
+            </button>
+            {{-- Perbarui Button --}}
             <button type="submit"
                 class="bg-gradient-to-r from-blue-100 to-yellow-50 text-gray-700 px-7 py-2.5 rounded-xl font-semibold shadow-lg flex items-center gap-3 transition-all duration-200 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-400">
                 <i class="fas fa-sync-alt"></i>
@@ -149,4 +146,38 @@ document.addEventListener('alpine:init', () => {
         }
     }));
 });
+
+function exportUserTableToCSV() {
+    let csv = 'ID,Nama,Email,Role,Status,Tanggal Daftar\n';
+    document.querySelectorAll('tbody tr').forEach(row => {
+        // Skip "User Not Found" row
+        const tds = row.querySelectorAll('td');
+        if (tds.length < 6) return;
+        // Ambil hanya kolom data utama
+        let data = [
+            tds[0]?.innerText.trim(), // ID
+            tds[1]?.innerText.trim(), // Nama
+            tds[2]?.innerText.trim(), // Email
+            tds[3]?.innerText.trim(), // Role
+            tds[4]?.innerText.trim(), // Status
+            tds[5]?.innerText.trim(), // Tanggal Daftar
+        ].map(v => {
+            // Hapus tanda kutip ganda, spasi berlebih, dan hanya beri kutip jika ada koma
+            let clean = v.replace(/"/g, '').replace(/\s+/g, ' ').trim();
+            return /,/.test(clean) ? `"${clean}"` : clean;
+        });
+        csv += data.join(',') + '\n';
+    });
+
+    // Download CSV
+    let blob = new Blob([csv], { type: 'text/csv' });
+    let url = window.URL.createObjectURL(blob);
+    let a = document.createElement('a');
+    a.href = url;
+    a.download = 'Data User.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+}
 </script>

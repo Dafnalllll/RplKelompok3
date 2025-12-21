@@ -2,7 +2,7 @@
 <div x-data="{ open: false }">
     <!-- Tombol untuk membuka modal detail -->
     <button @click="open = true"
-        class="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold">
+        class="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold hover:scale-105 transition-all">
         <i class="fas fa-eye"></i> Detail
     </button>
 
@@ -41,7 +41,7 @@
                             </span>
                             @if(!empty($product['year']))
                                 <span class="inline-block px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-xs font-semibold ml-2">
-                                    Tahun: {{ $product['year'] }}
+                                    {{ $product['year'] }}
                                 </span>
                             @endif
                         </div>

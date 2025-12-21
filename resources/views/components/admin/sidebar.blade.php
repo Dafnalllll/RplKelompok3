@@ -39,7 +39,14 @@
                 <a href="{{ route('ordermanage') }}"
                     class="flex items-center gap-3 px-4 py-3 text-slate-300 rounded-lg transition-all hover:scale-105 duration-300 hover:bg-slate-700 hover:text-white
                     {{ request()->routeIs('ordermanage') ? 'bg-slate-700 text-white font-bold shadow' : '' }}">
-                    <i class="fas fa-cube text-lg"></i>
+                    <span class="relative flex items-center">
+                        <i class="fas fa-cube text-lg"></i>
+                        @if(isset($pendingOrderCount) && $pendingOrderCount > 0)
+                            <span class="absolute -top-2 -right-3 flex items-center justify-center bg-blue-600 text-white text-xs font-semibold rounded-full w-5 h-5 border-2 border-white shadow select-none">
+                                {{ $pendingOrderCount }}
+                            </span>
+                        @endif
+                    </span>
                     <span class="font-medium">Order Management</span>
                 </a>
             </li>
@@ -69,11 +76,27 @@
                     <span class="font-medium">Analytics</span>
                 </a>
             </li>
+
+            <!-- FAQ / Manage Questions -->
+            <li>
+                <a href="{{ route('questionmanage') }}"
+                    class="flex items-center gap-3 px-4 py-3 text-slate-300 rounded-lg transition-all hover:scale-105 duration-300 hover:bg-slate-700 hover:text-white
+                    {{ request()->routeIs('questionmanage') ? 'bg-slate-700 text-white font-bold shadow' : '' }}">
+                    <i class="fas fa-question text-lg relative">
+                        @if(isset($questionCount) && $questionCount > 0)
+                            <span class="absolute -top-2 -right-3 flex items-center justify-center bg-yellow-500 text-white text-xs font-semibold rounded-full w-5 h-5 border-2 border-slate-900 shadow-sm select-none">
+                                {{ $questionCount }}
+                            </span>
+                        @endif
+                    </i>
+                    <span class="font-medium">FAQ</span>
+                </a>
+            </li>
         </ul>
     </nav>
 
     <!-- Logout Section Desktop -->
-    <div class="p-4 border-t border-slate-700 mt-[215px]">
+    <div class="p-4 border-t border-slate-700 mt-[150px]">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit"
@@ -95,12 +118,12 @@
     <div x-show="open" x-transition.opacity class="fixed inset-0 bg-black/40 z-40" @click="open = false"></div>
     <!-- Drawer Sidebar -->
     <div x-show="open" x-transition:enter="transition transform duration-300"
-         x-transition:enter-start="-translate-x-full"
-         x-transition:enter-end="translate-x-0"
-         x-transition:leave="transition transform duration-300"
-         x-transition:leave-start="translate-x-0"
-         x-transition:leave-end="-translate-x-full"
-         class="fixed top-0 left-0 w-64 h-full bg-gradient-to-b from-slate-800 to-slate-900 shadow-2xl flex flex-col z-50">
+        x-transition:enter-start="-translate-x-full"
+        x-transition:enter-end="translate-x-0"
+        x-transition:leave="transition transform duration-300"
+        x-transition:leave-start="translate-x-0"
+        x-transition:leave-end="-translate-x-full"
+        class="fixed top-0 left-0 w-64 h-full bg-gradient-to-b from-slate-800 to-slate-900 shadow-2xl flex flex-col z-50">
         <!-- Close Button -->
         <button @click="open = false" class="absolute top-4 right-4 text-white text-2xl focus:outline-none">
             <i class="fas fa-times"></i>
@@ -139,7 +162,14 @@
                     <a href="{{ route('ordermanage') }}"
                         class="flex items-center gap-3 px-4 py-3 text-slate-300 rounded-lg transition-all hover:scale-105 duration-300 hover:bg-slate-700 hover:text-white
                         {{ request()->routeIs('ordermanage') ? 'bg-slate-700 text-white font-bold shadow' : '' }}">
-                        <i class="fas fa-cube text-lg"></i>
+                        <span class="relative flex items-center">
+                            <i class="fas fa-cube text-lg"></i>
+                            @if(isset($pendingOrderCount) && $pendingOrderCount > 0)
+                                <span class="absolute -top-2 -right-3 flex items-center justify-center bg-blue-600 text-white text-xs font-semibold rounded-full w-5 h-5 border-2 border-white shadow select-none">
+                                    {{ $pendingOrderCount }}
+                                </span>
+                            @endif
+                        </span>
                         <span class="font-medium">Order Management</span>
                     </a>
                 </li>
@@ -165,6 +195,21 @@
                         {{ request()->routeIs('analytics') ? 'bg-slate-700 text-white font-bold shadow' : '' }}">
                         <i class="fas fa-chart-line text-lg"></i>
                         <span class="font-medium">Analytics</span>
+                    </a>
+                </li>
+                <!-- FAQ / Manage Questions -->
+                <li>
+                    <a href="{{ route('questionmanage') }}"
+                        class="flex items-center gap-3 px-4 py-3 text-slate-300 rounded-lg transition-all hover:scale-105 duration-300 hover:bg-slate-700 hover:text-white
+                        {{ request()->routeIs('questionmanage') ? 'bg-slate-700 text-white font-bold shadow' : '' }}">
+                        <i class="fas fa-question text-lg relative">
+                            @if(isset($questionCount) && $questionCount > 0)
+                                <span class="absolute -top-2 -right-3 flex items-center justify-center bg-yellow-500 text-white text-xs font-semibold rounded-full w-5 h-5 border-2 border-slate-900 shadow-sm select-none">
+                                    {{ $questionCount }}
+                                </span>
+                            @endif
+                        </i>
+                        <span class="font-medium">FAQ</span>
                     </a>
                 </li>
             </ul>

@@ -31,10 +31,10 @@
             <a href="https://instagram.com/andalaswheels" target="_blank" aria-label="Instagram">
                 <i class="fa-brands fa-instagram text-xl hover:text-yellow-400 transition-all hover:scale-105"></i>
             </a>
-            <a href="mailto:info@andalaswheels.com" aria-label="Email">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=andalaswheels21@gmail.com" target="_blank" aria-label="Email">
                 <i class="fa-solid fa-envelope text-xl hover:text-yellow-400 transition-all hover:scale-105"></i>
             </a>
-            <a href="#" aria-label="WhatsApp">
+            <a href="https://wa.me/62816303595" target="_blank" aria-label="WhatsApp">
                 <i class="fa-brands fa-whatsapp text-xl hover:text-yellow-400 transition-all hover:scale-105"></i>
             </a>
         </div>

@@ -1,10 +1,3 @@
-@section('title', 'Andalas Wheels || Profile')
-@push('head')
-    <title>Andalas Wheels || Profile</title>
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-@endpush
-
 <style>
 @keyframes bounce-in {
     0% { transform: scale(0.8) translateY(-30px); opacity: 0; }
@@ -31,11 +24,11 @@
             <div class="md:col-span-2 mb-2">
                 <div class="flex items-center text-center gap-3 mb-1">
                     <i class="fas fa-user-circle text-blue-500 text-4xl"></i>
-                    <h2 class="text-3xl font-extrabold text-blue-900 drop-shadow">
+                    <h2 class="text-3xl font-extrabold text-blue-100 drop-shadow">
                         {{ __('Profile Information') }}
                     </h2>
                 </div>
-                <p class="text-base text-gray-600">
+                <p class="text-base text-white">
                     {{ __("Update your account's profile information.") }}
                 </p>
             </div>
@@ -60,7 +53,7 @@
                 />
                 @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                     <div>
-                        <p class="text-sm mt-2 text-gray-800">
+                        <p class="text-sm mt-2 text-white">
                             {{ __('Your email address is unverified.') }}
                             <button form="send-verification"
                                 class="underline text-sm text-blue-600 hover:text-blue-800 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
@@ -92,6 +85,14 @@
                 <x-input-error class="mt-2" :messages="$errors->get('phone')" />
             </div>
 
+            <div>
+                <x-input-label for="alamat" :value="__('Alamat')" />
+                <x-text-input id="alamat" name="alamat" type="text"
+                    class="mt-1 block w-full rounded-lg border-blue-200 focus:ring-blue-400 focus:border-blue-400 shadow"
+                    :value="old('alamat', $user->profile->alamat ?? '')" autocomplete="alamat" />
+                <x-input-error class="mt-2" :messages="$errors->get('alamat')" />
+            </div>
+
             <div class="md:col-span-2">
                 <x-input-label for="ktm" :value="__('File KTM')" />
                 <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-2 mt-1">
@@ -110,7 +111,7 @@
                         input.value = '';
                         document.getElementById('ktm-label-text').innerText = 'Pilih File KTM / Drag & Drop';
                         this.classList.add('hidden');
-                    " class="hidden ml-2 text-red-500 hover:text-red-700 bg-white rounded-full border border-red-200 w-8 h-8 flex items-center justify-center shadow transition-all" title="Batalkan Pilihan">
+                    " class="hidden ml-2 text-red-500 hover:text-red-700 bg-white rounded-full border border-red-200 w-8 h-8  items-center justify-center shadow transition-all" title="Batalkan Pilihan">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -130,9 +131,9 @@
                     <div>
                         @if(!empty($user->profile) && !empty($user->profile->avatar))
                             <img id="avatar-preview"
-                                 src="{{ asset('storage/' . $user->profile->avatar) }}"
-                                 alt="Avatar"
-                                 class="mx-auto w-24 h-24 rounded-full object-cover border-4 border-blue-200 shadow-lg transition-all duration-200 hover:scale-105 bg-white">
+                                src="{{ asset('storage/' . $user->profile->avatar) }}"
+                                alt="Avatar"
+                                class="mx-auto w-24 h-24 rounded-full object-cover border-4 border-blue-200 shadow-lg transition-all duration-200 hover:scale-105 bg-white">
                         @else
                             <div id="avatar-preview" class="mx-auto w-24 h-24 rounded-full bg-blue-100 flex items-center justify-center text-blue-400 text-4xl border-4 border-blue-50 shadow-lg">
                                 <i class="fas fa-user"></i>
@@ -157,7 +158,7 @@
                             document.getElementById('avatar-label-text').innerText = 'Pilih Foto Profil / Drag & Drop';
                             document.getElementById('avatar-preview').src = '{{ !empty($user->profile) && !empty($user->profile->avatar) ? asset('storage/' . $user->profile->avatar) : '' }}';
                             this.classList.add('hidden');
-                        " class="hidden ml-2 text-red-500 hover:text-red-700 bg-white rounded-full border border-red-200 w-8 h-8 flex items-center justify-center shadow transition-all" title="Batalkan Pilihan">
+                        " class="hidden ml-2 text-red-500 hover:text-red-700 bg-white rounded-full border border-red-200 w-8 h-8 items-center justify-center shadow transition-all" title="Batalkan Pilihan">
                             <i class="fas fa-times"></i>
                         </button>
                         <p class="text-xs text-gray-500 mt-2">Format: jpg, jpeg, png, gif, webp. Maksimal 5 MB.</p>

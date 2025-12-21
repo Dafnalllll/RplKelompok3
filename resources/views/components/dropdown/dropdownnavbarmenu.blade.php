@@ -24,12 +24,18 @@
         </svg>
         <span>Profil</span>
     </a>
-    <a href="{{ route('history') }}" class="flex items-center gap-3 px-5 py-3 text-blue-900 hover:bg-blue-50 transition font-medium text-base">
+    <a href="{{ route('history') }}" class="flex items-center gap-3 px-5 py-3 text-blue-900 hover:bg-blue-50 transition font-medium text-base relative">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <circle cx="12" cy="12" r="10" stroke="#FFD600" stroke-width="2" fill="#fffbe6"/>
             <path d="M12 7v5l4 2" stroke="#FFD600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         </svg>
         <span>History</span>
+        @if(isset($notifOrderCount) && $notifOrderCount > 0)
+            <span class="absolute left-4 -top-1 flex items-center justify-center bg-blue-600 text-white text-xs font-bold rounded-full border-2 border-white w-5 h-5 shadow"
+                style="font-size: 0.85rem;">
+                {{ $notifOrderCount }}
+            </span>
+        @endif
     </a>
     <div class="border-t border-blue-50 my-1"></div>
     <form method="POST" action="{{ route('logout') }}">

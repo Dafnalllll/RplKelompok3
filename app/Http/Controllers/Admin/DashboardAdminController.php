@@ -18,7 +18,8 @@ class DashboardAdminController extends Controller
         $orders = Order::with('user')->latest()->take(5)->get(); // ambil 5 order terbaru
         $products = Product::latest()->take(5)->get(); // ambil 5 produk terbaru
         $totalProducts = Product::count();
+        $totalRevenue = Order::where('status', 'Diterima')->sum('total_harga');
 
-        return view('pages.admin.dashboardadmin', compact('totalUser', 'totalOrder', 'users', 'orders', 'products', 'totalProducts'));
+        return view('pages.admin.dashboardadmin', compact('totalUser', 'totalOrder', 'users', 'orders', 'products', 'totalProducts', 'totalRevenue'));
     }
 }

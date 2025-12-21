@@ -7,9 +7,14 @@
         ->pluck('total', 'status')
         ->toArray();
 
-    $labels = array_keys($orderStatus);
-    $values = array_values($orderStatus);
-    $colors = ['#22c55e', '#fbbf24', '#ef4444', '#3b82f6', '#a855f7', '#fb7185', '#10b981'];
+    // Pastikan urutan dan label tetap: Pending, Diterima, Ditolak
+    $labels = ['Pending', 'Diterima', 'Ditolak'];
+    $values = [
+        $orderStatus['Pending'] ?? 0,
+        $orderStatus['Diterima'] ?? 0,
+        $orderStatus['Ditolak'] ?? 0,
+    ];
+    $colors = ['#fbbf24', '#22c55e', '#ef4444'];
 @endphp
 
 <div class="p-8 max-w-5xl w-full mx-auto transition-all duration-300 hover:shadow-blue-200">
@@ -32,14 +37,14 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const ctx = document.getElementById('orderPieChart').getContext('2d');
-        @if(count($labels) > 0)
+        @if(array_sum($values) > 0)
             new Chart(ctx, {
                 type: 'pie',
                 data: {
                     labels: {!! json_encode($labels) !!},
                     datasets: [{
                         data: {!! json_encode($values) !!},
-                        backgroundColor: {!! json_encode(array_slice($colors, 0, count($labels))) !!},
+                        backgroundColor: {!! json_encode($colors) !!},
                         borderColor: '#fff',
                         borderWidth: 2,
                         hoverOffset: 16
@@ -79,7 +84,7 @@
                     labels: ['Tidak Ada Data'],
                     datasets: [{
                         data: [1],
-                        backgroundColor: ['#d1d5db'], // abu-abu netral
+                        backgroundColor: ['#d1d5db'],
                         borderColor: '#fff',
                         borderWidth: 2
                     }]

@@ -29,6 +29,7 @@ class ProfileController extends Controller
         $request->validate([
             'nim' => 'required|digits_between:1,50',
             'phone' => 'required|digits_between:1,20',
+            'alamat' => 'required|string|max:255',
             'ktm' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:10240',
             'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:5120', // 5MB
         ]);
@@ -38,6 +39,7 @@ class ProfileController extends Controller
         $profile = $user->profile ?: new \App\Models\UserProfile(['user_id' => $user->id]);
         $profile->nim = $request->nim;
         $profile->phone = $request->phone;
+        $profile->alamat = $request->alamat;
 
         // Handle upload KTM
         if ($request->hasFile('ktm')) {
@@ -53,7 +55,7 @@ class ProfileController extends Controller
 
         $profile->save();
 
-        return back()->with('status', 'profile-updated');
+        return back()->with('status', 'Akun Berhasil Diperbarui.');
     }
 
     /**
@@ -61,19 +63,15 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
+        $request->validate([
             'password' => ['required', 'current_password'],
         ]);
 
         $user = $request->user();
+        $user->delete();
 
         Auth::logout();
 
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+        return redirect('/')->with('status', 'Akun Berhasil Dihapus.');
     }
 }

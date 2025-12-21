@@ -7,8 +7,8 @@
 
 <div class="fixed inset-0 -z-10">
     <img src="{{ asset('img/motor.webp') }}"
-         alt="Andalas Wheels Motorcycle Background"
-         class="w-full h-full object-cover object-center" />
+        alt="Andalas Wheels Motorcycle Background"
+        class="w-full h-full object-cover object-center" />
     <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
 </div>
 
@@ -31,15 +31,15 @@
                         <span class="block">& Mudah Untuk Mahasiswa</span>
                     </h1>
                     <p class="text-base sm:text-xl text-gray-300 leading-relaxed max-w-lg mx-auto lg:mx-0"
-                       data-aos="fade-right"
-                       data-aos-duration="1000"
-                       data-aos-delay="300">
+                        data-aos="fade-right"
+                        data-aos-duration="1000"
+                        data-aos-delay="300">
                         Nikmati layanan rental motor cepat, aman, dan terjangkau khusus mahasiswa
                     </p>
                     <div>
                         <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500">
                             <a href="{{ url('/product') }}"
-                               class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-lg text-base sm:text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl inline-block">
+                                class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-lg text-base sm:text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl inline-block">
                                 Order Now
                             </a>
                         </div>

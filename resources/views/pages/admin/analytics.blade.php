@@ -24,7 +24,12 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                     @include('components.admin.analyticssection.graphproduct')
                     @include('components.admin.analyticssection.graphorder')
-                    @include('components.admin.analyticssection.graphprofit')
+                </div>
+                {{-- Grafik Profit di tengah --}}
+                <div class="flex justify-center mb-8">
+                    <div class="w-full max-w-4xl">
+                        @include('components.admin.analyticssection.graphprofit')
+                    </div>
                 </div>
             </main>
         </div>

@@ -5,6 +5,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
 
+@php
+function formatRupiahShort($num) {
+    $num = (int)$num;
+    if ($num >= 1000000000000) return number_format($num/1000000000000, ($num%1000000000000===0)?0:1, ',', '.') . 'T';
+    if ($num >= 1000000000)   return number_format($num/1000000000,   ($num%1000000000===0)?0:1, ',', '.') . 'M';
+    if ($num >= 1000000)      return number_format($num/1000000,      ($num%1000000===0)?0:1, ',', '.') . 'Jt';
+    if ($num >= 1000)         return number_format($num/1000,         ($num%1000===0)?0:1, ',', '.') . 'Rb';
+    return $num;
+}
+@endphp
+
 <x-app-layout>
     <div class="flex min-h-screen bg-gradient-to-br from-blue-100 via-yellow-50 to-blue-200">
         {{-- Sidebar --}}
@@ -41,8 +52,8 @@
                     <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-orange-500 hover:scale-105 duration-300 transition-all cursor-pointer">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-gray-600 text-sm font-medium mb-1">Total Produk</p>
-                                 <p class="text-3xl font-bold text-gray-800">{{ $totalProducts }}</p>
+                                <p class="text-gray-600 text-sm font-medium mb-1">Total Motorcycle</p>
+                                <p class="text-3xl font-bold text-gray-800">{{ $totalProducts }}</p>
 
                             </div>
                             <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
@@ -69,7 +80,9 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-600 text-sm font-medium mb-1">Total Revenue</p>
-                                <p class="text-3xl font-bold text-gray-800">130</p>
+                                <p class="text-3xl font-bold text-gray-800">
+                                    {{ formatRupiahShort($totalRevenue) }}
+                                </p>
 
                             </div>
                             <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">

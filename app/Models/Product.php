@@ -20,4 +20,8 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function getStatusAttribute()
+    {
+        return $this->stock > 0 ? 'In Stock' : 'Out Stock';
+    }
 }

@@ -34,7 +34,7 @@
             {{-- Wrapper untuk AOS --}}
             <div data-aos="zoom-in" data-aos-delay="600">
                 <a href="#ask-section" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg mt-2 transform hover:scale-105 cursor-pointer">
-                    Get in Touch
+                  Hubungi Kami
                 </a>
             </div>
         </div>
